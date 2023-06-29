@@ -27,7 +27,7 @@ namespace WomanShop
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{x?}/{y?}/{operation?}");
+                pattern: "{controller=Home}/{action=Index}");
 
             app.Run();
         }
