@@ -6,9 +6,11 @@ namespace WomanShop.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public string Index()
         {
-            return View();
+
+            var products = new ProductStorage();
+            return products.ToString();
         }
 
         public IActionResult Privacy()
