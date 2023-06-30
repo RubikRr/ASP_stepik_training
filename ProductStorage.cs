@@ -5,22 +5,19 @@ namespace WomanShop
 {
     public class ProductStorage
     {
-        public List<Product> Products { get; set; }
+        static private List<Product> products = new List<Product>() {
+                new Product("Пиджак",2500,"Женский пиджак"),
+                new Product("Кеды",5000,"Кеды на лето"),
+                new Product("Блузка",3000,"Блузка для офиса") };
 
-        public ProductStorage()
-        {
-            Products = new List<Product>() 
-            {
-                new Product(0,"Пиджак",2500,"Женский пиджак"),
-                new Product(1,"Кеды",5000,"Кеды на лето"),
-                new Product(2,"Блузка",3000,"Блузка для офиса")
-            };
-        }
+        public List<Product> GetAll() => products;
+
+        public Product TryGetById(int id) => products.FirstOrDefault(pr => pr.Id == id);
 
         public string ToString()
         {
             var sb = new StringBuilder();
-            foreach (var item in Products) 
+            foreach (var item in products)
             {
                 sb.Append(item.ToString());
             }

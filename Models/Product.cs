@@ -2,18 +2,20 @@
 {
     public class Product
     {
+        static private int counter=0;
+        public int Id { get;  }
+        public string Name { get; }
+        public decimal Cost { get;}
+        public string Description { get;}
 
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Cost { get; set; }
-        public string Description { get; set; }
-
-        public Product(int id, string name, decimal cost, string description)
+        public Product( string name, decimal cost, string description)
         {
-            Id = id;
+            Id = counter;
             Name = name;
             Cost = cost;
             Description = description;
+
+            counter++;
         }
 
         public string ToString()

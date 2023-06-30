@@ -6,23 +6,15 @@ namespace WomanShop.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ProductStorage productStorage;
+
+        public HomeController()
+        {
+            productStorage = new ProductStorage();
+        }
         public string Index()
         {
-
-            var products = new ProductStorage();
-            return products.ToString();
-        }
-    
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return productStorage.ToString();
         }
     }
 }
