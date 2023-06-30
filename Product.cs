@@ -18,7 +18,7 @@
 
         public string ToString()
         {
-            return $"{Id}\n{Name}\n{Cost}\n{Description}\n";
+            return $"Id:{Id}\nНазвание:{Name}\nЦена:{Cost}\nОписание:{Description}\n\n";
         }
 
 

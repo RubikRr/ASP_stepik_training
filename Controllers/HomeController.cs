@@ -12,6 +12,7 @@ namespace WomanShop.Controllers
             var products = new ProductStorage();
             return products.ToString();
         }
+    
 
         public IActionResult Privacy()
         {
