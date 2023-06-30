@@ -1,4 +1,4 @@
-﻿namespace WomanShop
+﻿namespace WomanShop.Models
 {
     public class Product
     {
