@@ -12,9 +12,9 @@ namespace WomanShop.Controllers
         {
             productStorage = new ProductStorage();
         }
-        public string Index()
+        public IActionResult Index()
         {
-            return productStorage.ToString();
+            return View(productStorage.GetAll());
         }
     }
 }

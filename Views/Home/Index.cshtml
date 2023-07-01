@@ -1,7 +1,21 @@
-﻿@{
+﻿@model List<Product>
+@{
     ViewData["Title"] = "Home Page";
 }
-
+<div class="row">
+    @foreach (var product in Model)
+    {
+       <div class="col-3 card"> 
+            <img src="https://amiel.club/uploads/posts/2022-03/1647647878_2-amiel-club-p-kartinki-pukhli-2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a class="card-title" href="/product/index/@product.Id"> @product.Name </a>
+                <h5>Цена:@product.Cost р.</h5>
+                <p>Описание:@product.Description</p>
+                <a class="btn btn-dark" href="#">Добавить в карзину</a>
+            </div> 
+       </div>
+    }
+</div>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
