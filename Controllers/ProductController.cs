@@ -9,10 +9,11 @@ namespace WomanShop.Controllers
         {
             productStorage = new ProductStorage();
         }
-        public string Index(int id)
+        public IActionResult Index(int id)
         {
             var product = productStorage.TryGetById(id);
-            return product != null? product.ToString():$"Товар с индексом {id} не существует";
+            //return product != null? product.ToString():$"Товар с индексом {id} не существует";
+            return View(product);
         }
     }
 }
