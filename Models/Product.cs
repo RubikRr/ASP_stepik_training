@@ -7,13 +7,15 @@
         public string Name { get; }
         public decimal Cost { get;}
         public string Description { get;}
+        public string ImagePath { get; set; }
 
-        public Product( string name, decimal cost, string description)
+        public Product(string name, decimal cost, string description, string imagePath)
         {
             Id = counter;
             Name = name;
             Cost = cost;
             Description = description;
+            ImagePath = imagePath;
 
             counter++;
         }
@@ -22,7 +24,5 @@
         {
             return $"Id:{Id}\nНазвание:{Name}\nЦена:{Cost}\nОписание:{Description}\n\n";
         }
-
-
     }
 }
