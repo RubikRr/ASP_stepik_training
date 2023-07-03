@@ -20,15 +20,5 @@
                 return Items.Sum(cartItem=>cartItem.Amount);
             }
         }
-
-        public void Add(CartItem item)
-        {
-            Items.Add(item);
-        }
-
-        public CartItem TryGetCartItem(int productId)
-        {
-            return Items.FirstOrDefault(item => item.Product.Id == productId);
-        }
     }
 }

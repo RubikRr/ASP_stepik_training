@@ -18,15 +18,5 @@ namespace WomanShop
         public List<Product> GetAll() => products;
 
         public Product TryGetById(int id) => products.FirstOrDefault(pr => pr.Id == id);
-
-        public string ToString()
-        {
-            var sb = new StringBuilder();
-            foreach (var item in products)
-            {
-                sb.Append(item.ToString());
-            }
-            return sb.ToString();
-        }
     }
 }

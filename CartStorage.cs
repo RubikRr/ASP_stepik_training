@@ -16,10 +16,10 @@ namespace WomanShop
             }
             else
             {
-                var existingCartItem=cart.TryGetCartItem(product.Id);
+                var existingCartItem= cart.Items.FirstOrDefault(item => item.Product.Id == product.Id);
                 if (existingCartItem == null)
                 {
-                    cart.Add(new CartItem(product));
+                    cart.Items.Add(new CartItem(product));
                 }
                 else
                 {

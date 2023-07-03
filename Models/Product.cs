@@ -19,10 +19,5 @@
 
             counter++;
         }
-
-        public string ToString()
-        {
-            return $"Id:{Id}\nНазвание:{Name}\nЦена:{Cost}\nОписание:{Description}\n\n";
-        }
     }
 }
