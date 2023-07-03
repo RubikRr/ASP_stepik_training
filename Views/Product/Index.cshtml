@@ -12,7 +12,7 @@
                 <h5> <a href="/product/index/@Model.Id"> @Model.Name </a></h5>
                 <h5>Цена:@Model.Cost р.</h5>
                 <p>Описание:@Model.Description</p>
-                <a class="btn btn-dark" href="#">Добавить в карзину</a>
+                <a class="btn btn-dark" href="/cart/index?userId=0&productId=@Model.Id">Добавить в карзину</a>
                 <a class="btn btn-primary" href="/home/index">Продолжить покупки</a>
             </div> 
     </div>
