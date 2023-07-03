@@ -4,10 +4,10 @@ namespace WomanShop.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductStorage productStorage;
+        private readonly ProductsStorage productStorage;
         public ProductController()
         {
-            productStorage = new ProductStorage();
+            productStorage = new ProductsStorage();
         }
         public IActionResult Index(int id)
         {

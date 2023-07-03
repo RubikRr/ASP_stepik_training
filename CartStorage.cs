@@ -2,24 +2,37 @@
 
 namespace WomanShop
 {
-    public class CartStorage
+    public static class CartStorage
     {
-        public List<Cart> Carts { get; set; } = new List<Cart>();
+        private static  List<Cart> carts { get; set; } = new List<Cart>();
 
-        public void AddByUserId(int userId)
+        public static void Add(int userId,Product product)
         {
-            if (!Carts.Any(cart=>cart.UserId==userId))
-                  Carts.Add(new Cart(userId));
+            var cart=carts.FirstOrDefault(cart => cart.UserId == userId);
+            if (cart == null)
+            {
+                var newCart = new Cart(userId, product);
+                carts.Add(newCart);
+            }
+            else
+            {
+                var existingCartItem=cart.TryGetCartItem(product.Id);
+                if (existingCartItem == null)
+                {
+                    cart.Add(new CartItem(product));
+                }
+                else
+                {
+                    existingCartItem.Count++;
+                }
+            }
         }
 
-        public void AddByUserIdAndCart(int userId, Cart cart) 
-        {
 
-        }
 
-        public Cart TryGetByUserId(int userId) 
+        public static Cart TryGetByUserId(int userId) 
         {
-            return Carts.FirstOrDefault(cart=>cart.UserId==userId);
+            return carts.FirstOrDefault(cart=>cart.UserId==userId);
         }
     }
 }

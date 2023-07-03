@@ -3,7 +3,7 @@ using WomanShop.Models;
 
 namespace WomanShop
 {
-    public class ProductStorage
+    public class ProductsStorage
     {
         static private List<Product> products = new List<Product>() {
                 new Product("Пиджак",2500,"Женский пиджак","/images/products/image1.png"),

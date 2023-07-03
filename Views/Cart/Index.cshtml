@@ -1,8 +1,13 @@
 ﻿@model Cart
 
 
-
-<table class="table">
+@if (Model == null)
+{
+    <h1>Товары в корзине отсутствуют</h1>
+}
+else
+{
+    <table class="table">
     <thead>
     <tr>
       <th scope="col">Название</th>
@@ -10,29 +15,34 @@
       <th scope="col">Стоймость</th>
     </tr>
   </thead>
-@foreach (var position in Model.Positions)
-{
-    <p></p>
-    <p></p>
+
   <tbody>
-      <tr>
-          <td>@position.Product.Name</td>
-          <td>@position.Count</td>
-          <td>@position.Product.Cost</td>
-      </tr>
+      @foreach (var position in Model.Items)
+       {
+          <tr>
+              <td>@position.Product.Name</td>
+              <td>@position.Count</td>
+              <td>@position.Product.Cost</td>
+          </tr>
+        }
+
   </tbody>
-}
   <tfoot>
      <tr>
         <td>Итого</td>
         <td></td>
-        <td> @Model.CalculateAmount() ₽</td>
+        <td> @Model.Amount₽</td>
     </tr>
   </tfoot>
 </table>
 <div class="row">
+    <div class="col-3"> 
+        <button class="btn btn-secondary" type="button" href="/home/index">Продолжить покупки</button>
+    </div>
     <div class="col-2">
         <button class="btn btn-primary" type="submit" href="#">Оформить заказ</button>
     </div>
 </div>
+
+}
 

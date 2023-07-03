@@ -6,30 +6,20 @@ namespace WomanShop.Controllers
     public class CartController:Controller
     {
 
-        private static CartStorage cartStorage { get; }=new CartStorage();
-        private  ProductStorage productStorage { get; } = new ProductStorage() ;
-        public IActionResult Index(int userId,int productId)
+        private  ProductsStorage productStorage { get; } = new ProductsStorage() ;
+        public IActionResult Add(int productId)
         {
-            var userCart= cartStorage.TryGetByUserId(userId);
-            if (userCart == null)
-            {
-                cartStorage.AddByUserId(userId);
-                userCart = cartStorage.TryGetByUserId(userId);
-            }
-
-            userCart.Add(productStorage.TryGetById(productId));
-            return View(userCart);
+            var product = productStorage.TryGetById(productId);
+            CartStorage.Add(Constants.UserId, product);
+      
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Show(int userId)
+        public IActionResult Index()
         {
-            var userCart = cartStorage.TryGetByUserId(userId);
-            if (userCart == null)
-            {
-                cartStorage.AddByUserId(userId);
-                userCart = cartStorage.TryGetByUserId(userId);
-            }
-            return View("Index",userCart);
+            var userCart = CartStorage.TryGetByUserId(Constants.UserId);
+           
+            return View(userCart);
         }
     }
 }

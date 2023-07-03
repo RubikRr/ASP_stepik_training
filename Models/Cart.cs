@@ -2,33 +2,33 @@
 {
     public class Cart
     {
-        public int UserId { get; }
-        public List<Position> Positions{ get; set; }
+        public Guid Id { get; set; }
+        public int UserId { get; set; }
+        public List<CartItem> Items{ get; set; }
 
-        public decimal Amount { get; set; }
-
-        public Cart(int userID)
+        public Cart( int userId,Product product )
         {
-            UserId = userID;
-            Positions = new List<Position>();
-            Amount = 0;
+            Id = new Guid();
+            UserId = userId;
+            Items = new List<CartItem>() {new CartItem(product) };
         }
 
-        public void Add(Product product)
+        public decimal Amount
         {
-            var postition=Positions.FirstOrDefault(position => position.Product.Id== product.Id);
-            if (postition == null)
+            get 
             {
-                Positions.Add(new Position(product, 1));
+                return Items.Sum(cartItem=>cartItem.Amount);
             }
-            else 
-            {
-                postition.Count++;
-            }
-            Amount += product.Cost;
         }
 
-        public decimal CalculateAmount() { return Positions.Sum(position => position.Count * position.Product.Cost); }
+        public void Add(CartItem item)
+        {
+            Items.Add(item);
+        }
 
+        public CartItem TryGetCartItem(int productId)
+        {
+            return Items.FirstOrDefault(item => item.Product.Id == productId);
+        }
     }
 }
