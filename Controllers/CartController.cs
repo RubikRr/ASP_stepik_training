@@ -33,9 +33,10 @@ namespace WomanShop.Controllers
             return View(userCart);
         }
 
-        public IActionResult Clear(Guid cartId)
+        public IActionResult Clear()
         {
-            cartsStorage.Clear(cartId);
+            
+            cartsStorage.Clear(Constants.UserId);
             return RedirectToAction("Index");
         }
         public IActionResult ChangeCount(Guid cartId,Guid cartItemId, string act)
@@ -44,16 +45,12 @@ namespace WomanShop.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Checkout(Guid cartId)
+        public IActionResult Checkout()
         {
-            var cart = cartsStorage.TryGetById(cartId);
+            var cart = cartsStorage.TryGetByUserId(Constants.UserId);
             return View(cart);
         }
 
-        public IActionResult Confirm(Guid cartId)
-        {
-            cartsStorage.Destroy(cartId);
-            return View();
-        }
+     
     }
 }

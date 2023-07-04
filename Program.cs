@@ -13,6 +13,7 @@ namespace WomanShop
 
             builder.Services.AddSingleton<IProductsStorage,InMemoryProductsStorage>();
             builder.Services.AddSingleton<ICartsStorage,InMemoryCartsStorage>();
+            builder.Services.AddSingleton<IOrdersStorage, InMemoryOrdersStorage>();
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())

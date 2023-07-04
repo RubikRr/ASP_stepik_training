@@ -5,7 +5,7 @@ namespace WomanShop.Storages
 {
     public class InMemoryCartsStorage:ICartsStorage
     {
-        public List<Cart> carts { get; set; } = new List<Cart>();
+        private List<Cart> carts = new List<Cart>();
  
         public void Add(int userId, Product product)
         {
@@ -60,15 +60,15 @@ namespace WomanShop.Storages
             return carts.FirstOrDefault(cart => cart.Id == cartId);
         }
 
-        public void Clear(Guid cartId)
+        public void Clear(int userId)
         {
-            var cart=carts.FirstOrDefault(cart => cart.Id == cartId);
+            var cart=carts.FirstOrDefault(cart => cart.UserId == userId);
             cart.Items.Clear();
         }
 
-        public void Destroy(Guid cartId)
+        public void Destroy(int userId)
         {
-            var cart=TryGetById(cartId);
+            var cart=TryGetByUserId(userId);
             carts.Remove(cart);
         }
 
