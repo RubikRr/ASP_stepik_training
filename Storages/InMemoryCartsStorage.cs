@@ -5,18 +5,15 @@ namespace WomanShop.Storages
 {
     public class InMemoryCartsStorage:ICartsStorage
     {
-        public List<Cart> Carts { get; set; }
-        public InMemoryCartsStorage()
-        {
-            Carts = new List<Cart>();
-        }
+        public List<Cart> carts { get; set; } = new List<Cart>();
+ 
         public void Add(int userId, Product product)
         {
-            var cart = Carts.FirstOrDefault(cart => cart.UserId == userId);
+            var cart = carts.FirstOrDefault(cart => cart.UserId == userId);
             if (cart == null)
             {
                 var newCart = new Cart(userId, product);
-                Carts.Add(newCart);
+                carts.Add(newCart);
             }
             else
             {
@@ -31,12 +28,9 @@ namespace WomanShop.Storages
                 }
             }
         }
-
-
-
         public Cart TryGetByUserId(int userId)
         {
-            return Carts.FirstOrDefault(cart => cart.UserId == userId);
+            return carts.FirstOrDefault(cart => cart.UserId == userId);
         }
     }
 }
