@@ -24,7 +24,7 @@ namespace WomanShop.Controllers
         {
             var cart = cartsStorage.TryGetByUserId(Constants.UserId);
             ordersStorage.Add(cart);
-            cartsStorage.Destroy(cart.UserId);
+            cartsStorage.Destroy(Constants.UserId);
             return View();
         }
 
