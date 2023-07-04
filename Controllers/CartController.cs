@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WomanShop.Interfaces;
 using WomanShop.Models;
+using WomanShop.Storages;
 
 namespace WomanShop.Controllers
 {
     public class CartController:Controller
     {
 
-        private ProductsStorage productStorage { get; }
+        private IProductsStorage productStorage { get; }
 
-        private CartStorage cartStorage { get; set; }
+        private ICartsStorage cartStorage { get; set; }
 
-        public CartController(ProductsStorage _productsStorage,CartStorage _cartStorage)
+        public CartController(IProductsStorage _productsStorage,ICartsStorage _cartStorage)
         {
            productStorage = _productsStorage ;
            cartStorage = _cartStorage ;

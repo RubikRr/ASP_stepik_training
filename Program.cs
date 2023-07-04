@@ -1,3 +1,6 @@
+using WomanShop.Interfaces;
+using WomanShop.Storages;
+
 namespace WomanShop
 {
     public class Program
@@ -8,8 +11,8 @@ namespace WomanShop
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddSingleton<ProductsStorage>();
-            builder.Services.AddSingleton<CartStorage>();
+            builder.Services.AddSingleton<IProductsStorage,InMemoryProductsStorage>();
+            builder.Services.AddSingleton<ICartsStorage,InMemoryCartsStorage>();
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())

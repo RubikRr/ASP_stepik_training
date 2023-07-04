@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WomanShop.Interfaces;
+using WomanShop.Storages;
 
 namespace WomanShop.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductsStorage productsStorage;
-        public ProductController(ProductsStorage _productsStorage)
+        private readonly IProductsStorage productsStorage;
+        public ProductController(IProductsStorage _productsStorage)
         {
             productsStorage = _productsStorage;
         }

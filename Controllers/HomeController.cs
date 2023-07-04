@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WomanShop.Interfaces;
 using WomanShop.Models;
+using WomanShop.Storages;
 
 namespace WomanShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProductsStorage productsStorage;
+        private readonly IProductsStorage productsStorage;
 
-        public HomeController(ProductsStorage _productsStorage)
+        public HomeController(IProductsStorage _productsStorage)
         {
             productsStorage = _productsStorage;
         }
