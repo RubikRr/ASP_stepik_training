@@ -4,14 +4,14 @@ namespace WomanShop.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductsStorage productStorage;
-        public ProductController()
+        private readonly ProductsStorage productsStorage;
+        public ProductController(ProductsStorage _productsStorage)
         {
-            productStorage = new ProductsStorage();
+            productsStorage = _productsStorage;
         }
         public IActionResult Index(int id)
         {
-            var product = productStorage.TryGetById(id);
+            var product = productsStorage.TryGetById(id);
             //return product != null? product.ToString():$"Товар с индексом {id} не существует";
             return View(product);
         }

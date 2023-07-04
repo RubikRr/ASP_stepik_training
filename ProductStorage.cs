@@ -5,7 +5,7 @@ namespace WomanShop
 {
     public class ProductsStorage
     {
-        static private List<Product> products = new List<Product>() {
+        private List<Product> products = new List<Product>() {
                 new Product("Пиджак",2500,"Женский пиджак","/images/products/image1.png"),
                 new Product("Кеды",5000,"Кеды на лето","/images/products/image2.png"),
                 new Product("Блузка",3000,"Блузка для офиса","/images/products/image3.png"),

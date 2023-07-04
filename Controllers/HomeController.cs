@@ -6,15 +6,15 @@ namespace WomanShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProductsStorage productStorage;
+        private readonly ProductsStorage productsStorage;
 
-        public HomeController()
+        public HomeController(ProductsStorage _productsStorage)
         {
-            productStorage = new ProductsStorage();
+            productsStorage = _productsStorage;
         }
         public IActionResult Index()
         {
-            return View(productStorage.GetAll());
+            return View(productsStorage.GetAll());
         }
     }
 }

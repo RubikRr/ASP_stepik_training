@@ -2,11 +2,11 @@
 
 namespace WomanShop
 {
-    public static class CartStorage
+    public  class CartStorage
     {
-        private static  List<Cart> carts { get; set; } = new List<Cart>();
+        private List<Cart> carts { get; set; } = new List<Cart>();
 
-        public static void Add(int userId,Product product)
+        public  void Add(int userId,Product product)
         {
             var cart=carts.FirstOrDefault(cart => cart.UserId == userId);
             if (cart == null)
@@ -30,7 +30,7 @@ namespace WomanShop
 
 
 
-        public static Cart TryGetByUserId(int userId) 
+        public  Cart TryGetByUserId(int userId) 
         {
             return carts.FirstOrDefault(cart=>cart.UserId==userId);
         }

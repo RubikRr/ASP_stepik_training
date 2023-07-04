@@ -8,6 +8,8 @@ namespace WomanShop
 
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddSingleton<ProductsStorage>();
+            builder.Services.AddSingleton<CartStorage>();
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
