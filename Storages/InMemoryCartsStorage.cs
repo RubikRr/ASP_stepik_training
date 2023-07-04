@@ -28,9 +28,38 @@ namespace WomanShop.Storages
                 }
             }
         }
+
+        public void Change(Guid cartId, Guid cartItemId, string act)
+        {
+            var cart = carts.FirstOrDefault(cart => cart.Id == cartId);
+            var cartItem=cart.Items.FirstOrDefault(item => item.Id == cartItemId);
+            if (cartItem == null) { return; }
+            if (act == "increase")
+            {
+                cartItem.Count++;
+            }
+            else if (act == "decrease") 
+            {
+                if (cartItem.Count == 1||cartItem.Count==0)
+                {
+                    cart.Items.Remove(cartItem);
+                }
+                else
+                {
+                    cartItem.Count--;
+                }
+            }
+        }
         public Cart TryGetByUserId(int userId)
         {
             return carts.FirstOrDefault(cart => cart.UserId == userId);
         }
+
+        public void Clear(Guid cartId)
+        {
+            var cart=carts.FirstOrDefault(cart => cart.Id == cartId);
+            cart.Items.Clear();
+        }
+
     }
 }

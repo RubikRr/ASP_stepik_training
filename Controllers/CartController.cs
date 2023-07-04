@@ -8,28 +8,40 @@ namespace WomanShop.Controllers
     public class CartController:Controller
     {
 
-        private IProductsStorage productStorage { get; }
+        private IProductsStorage productsStorage { get; }
 
-        private ICartsStorage cartStorage { get; set; }
+        private ICartsStorage cartsStorage { get; set; }
 
         public CartController(IProductsStorage _productsStorage,ICartsStorage _cartStorage)
         {
-           productStorage = _productsStorage ;
-           cartStorage = _cartStorage ;
+           productsStorage = _productsStorage ;
+           cartsStorage = _cartStorage ;
         }
         public IActionResult Add(int productId)
         {
-            var product = productStorage.TryGetById(productId);
-            cartStorage.Add(Constants.UserId, product);
+            var product = productsStorage.TryGetById(productId);
+            cartsStorage.Add(Constants.UserId, product);
       
             return RedirectToAction("Index");
         }
 
+
         public IActionResult Index()
         {
-            var userCart = cartStorage.TryGetByUserId(Constants.UserId);
+            var userCart = cartsStorage.TryGetByUserId(Constants.UserId);
            
             return View(userCart);
+        }
+
+        public IActionResult Clear(Guid cartId)
+        {
+            cartsStorage.Clear(cartId);
+            return RedirectToAction("Index");
+        }
+        public IActionResult ChangeCount(Guid cartId,Guid cartItemId, string act)
+        {
+            cartsStorage.Change(cartId, cartItemId, act);
+            return RedirectToAction("Index");
         }
     }
 }

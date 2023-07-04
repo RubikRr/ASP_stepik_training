@@ -20,3 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.counter {
+    width:40px;
+    height:40px;
+}

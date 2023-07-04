@@ -1,46 +1,56 @@
 ﻿@model Cart
 
 
-@if (Model == null)
+@if (Model == null || Model.Items.Count==0)
 {
     <h1>Товары в корзине отсутствуют</h1>
 }
 else
 {
-    <table class="table">
-    <thead>
-    <tr>
+
+<table class="table">
+  <thead style="margin-bottom:10px">
+   <tr>
       <th scope="col">Название</th>
       <th scope="col">Кол-во</th>
       <th scope="col">Стоймость</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
-
-  <tbody>
-      @foreach (var position in Model.Items)
+  <tbody class="table-group-divider">
+     @foreach (var position in Model.Items)
        {
           <tr>
               <td>@position.Product.Name</td>
               <td>@position.Count</td>
               <td>@position.Product.Cost</td>
+              <td><a class="btn btn-dark border counter" href="/cart/ChangeCount?cartId=@Model.Id&cartItemId=@position.Id&act=decrease">-</a></td>
+              <td><a class="btn btn-dark border counter" href="/cart/ChangeCount?cartId=@Model.Id&cartItemId=@position.Id&act=increase">+</a></td>
           </tr>
         }
-
   </tbody>
   <tfoot>
      <tr>
         <td>Итого</td>
         <td></td>
         <td> @Model.Amount₽</td>
+        <td></td>
+        <td></td>
     </tr>
   </tfoot>
 </table>
+
+
 <div class="row">
     <div class="col-3"> 
          <a class="btn btn-primary" href="/home/index">Продолжить покупки</a>
     </div>
     <div class="col-2">
-        <button class="btn btn-primary" type="submit" href="#">Оформить заказ</button>
+        <button class="btn btn-success" type="submit" href="#">Оформить заказ</button>
+    </div>
+     <div class="col-3">
+         <a class="btn btn-danger" href="/cart/clear?cartId=@Model.Id">Очистить карзину</a>
     </div>
 </div>
 
