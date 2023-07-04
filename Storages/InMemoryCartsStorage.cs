@@ -55,10 +55,21 @@ namespace WomanShop.Storages
             return carts.FirstOrDefault(cart => cart.UserId == userId);
         }
 
+        public Cart TryGetById(Guid cartId)
+        {
+            return carts.FirstOrDefault(cart => cart.Id == cartId);
+        }
+
         public void Clear(Guid cartId)
         {
             var cart=carts.FirstOrDefault(cart => cart.Id == cartId);
             cart.Items.Clear();
+        }
+
+        public void Destroy(Guid cartId)
+        {
+            var cart=TryGetById(cartId);
+            carts.Remove(cart);
         }
 
     }
