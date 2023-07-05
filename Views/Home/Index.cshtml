@@ -2,23 +2,30 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
 <div class="row">
     @foreach (var product in Model)
     {
-       <div class="col-3">
+       <div class="col-3 mb-5">     
             <div class="card h-100"> 
+                <div class="card-header">
+                    <a onclick="myFunction(this);" href="/favorites/add?productId=@product.Id" class="btn ml-3 fa fa-heart-o"><i class=""></i></a>
+                </div>
                 <img src="@product.ImagePath" class="card-img-top img-thumbnail" alt="...">
                 <div class="card-body">
-                    <a class="card-title" href="/product/index/@product.Id"> @product.Name </a>
+                    <a class="card-title fs-5" href="/product/index/@product.Id"> @product.Name </a>
+
                     <h5>Цена:@product.Cost р.</h5>
                     <p>Описание:@product.Description</p>
-                    <a class="btn btn-dark" href="/cart/add?productId=@product.Id">Добавить в карзину</a>
+                    <a class="btn btn-dark" href="/cart/add?productId=@product.Id">Добавить в корзину</a>
                 </div> 
             </div>
        </div>
+       
     }
 </div>
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+
+
+
