@@ -20,7 +20,24 @@ namespace WomanShop.Storages
         };
 
         public List<Product> GetAll() => products;
-
+        public void Add(Product product)
+        {
+            var newProduct = new Product(product.Name,product.Cost,product.Description,product.ImagePath);
+            products.Add(newProduct);
+        
+        }
+        public void Edit(int productId,Product product)
+        {
+            var productInStorage = this.TryGetById(productId);
+            productInStorage.Name = product.Name;
+            productInStorage.Cost = product.Cost;
+            productInStorage.Description = product.Description;
+            productInStorage.ImagePath=product.ImagePath;
+        }
+        public void Remove(int productId)
+        {
+            products.RemoveAll(product => product.Id == productId);
+        }
         public Product TryGetById(int id) => products.FirstOrDefault(pr => pr.Id == id);
     }
 }

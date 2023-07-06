@@ -1,9 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WomanShop.Interfaces;
+using WomanShop.Models;
 
 namespace WomanShop.Controllers
 {
     public class AdminController:Controller
     {
+        private IProductsStorage productsStorage;
+
+        public AdminController(IProductsStorage _productsStorage)
+        {
+            productsStorage = _productsStorage;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -22,7 +31,37 @@ namespace WomanShop.Controllers
         }
         public IActionResult Products()
         {
+            var products = productsStorage.GetAll();
+            return View(products);
+        }
+
+        public IActionResult RemoveProduct(int productId)
+        {
+            productsStorage.Remove(productId);
+            return RedirectToAction("Products");
+        }
+        [HttpPost]
+        public IActionResult AddProduct(Product product)
+        {
+            productsStorage.Add(product);
+            return RedirectToAction("Products");
+        }
+        public IActionResult AddProduct()
+        {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult EditProduct(int productId,Product product)
+        {
+            productsStorage.Edit(productId, product);
+            return RedirectToAction("Products");
+        }
+        public IActionResult EditProduct(int productId)
+        {
+            var product=productsStorage.TryGetById(productId);
+            return View(product);
+        }
+
     }
 }

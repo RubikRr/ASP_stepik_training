@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WomanShop.Interfaces;
+using WomanShop.Models;
 using WomanShop.Storages;
 
 namespace WomanShop.Controllers
@@ -17,5 +18,6 @@ namespace WomanShop.Controllers
             //return product != null? product.ToString():$"Товар с индексом {id} не существует";
             return View(product);
         }
+
     }
 }

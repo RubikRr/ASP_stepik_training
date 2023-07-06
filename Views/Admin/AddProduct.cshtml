@@ -1,0 +1,27 @@
+﻿<form method="post">
+    <div class="row mb-3">
+        <label for="name" class="col-sm-2 col-form-label">Название</label>
+        <div class="col-sm-4">
+            <input type="text" name="name" id="name"class="form-control" >
+         </div>
+    </div>
+    <div class="row mb-3">
+        <label for="cost" class="col-sm-2 col-form-label">Цена ₽</label>
+        <div class="col-sm-4">
+            <input type="number" name="cost" id="cost"class="form-control">
+         </div>
+    </div>
+     <div class="row mb-3">
+        <label for="description" class="col-sm-2 col-form-label">Описание</label>
+        <div class="col-sm-4">
+            <textarea class="form-control" name="description" id="description"></textarea>
+         </div>
+    </div>
+    <div class="row mb-3">
+        <label for="image" class="col-sm-2 col-form-label">Картинка</label>
+        <div class="col-sm-4">
+            <input type="file" name="imagePath" id="image" class="form-control">
+        </div>
+    </div>
+   <button class="btn btn-success" asp-controller="admin" asp-action="addProduct" type="submit">Добавить</button>
+</form>
