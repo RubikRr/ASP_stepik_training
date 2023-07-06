@@ -25,10 +25,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="home" asp-action="Index">Главная</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="cart" asp-action="Index">Корзина</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="favorites" asp-action="Index">Избранное</a>
+                        </li>
+                         <li class="nav-item">
+                             @await Component.InvokeAsync("Cart")
                         </li>
                     </ul>
                 </div>

@@ -4,8 +4,9 @@
     {
         public Guid Id { get;}
         public Product Product { get; }
-        public int Count { get; set; } = 0;
-        public decimal Amount { get { return Product.Cost * Count; } }
+        public int Quantity
+        { get; set; } = 0;
+        public decimal Total { get { return Product.Cost * Quantity; } }
 
         
 
@@ -13,7 +14,7 @@
         {
             Id = new Guid();
             Product = product;
-            Count++;
+            Quantity++;
         }
 
 

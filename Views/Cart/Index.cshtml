@@ -7,7 +7,7 @@
 }
 else
 {
-
+    <h1>@Model.Quantity</h1>
 <table class="table">
   <thead style="margin-bottom:10px">
    <tr>
@@ -23,7 +23,7 @@ else
        {
           <tr>
               <td>@position.Product.Name</td>
-              <td>@position.Count</td>
+              <td>@position.Quantity</td>
               <td>@position.Product.Cost</td>
               <td><a class="btn btn-dark border counter" href="/cart/ChangeCount?cartId=@Model.Id&cartItemId=@position.Id&act=decrease">-</a></td>
               <td><a class="btn btn-dark border counter" href="/cart/ChangeCount?cartId=@Model.Id&cartItemId=@position.Id&act=increase">+</a></td>
@@ -34,7 +34,7 @@ else
      <tr>
         <td>Итого</td>
         <td></td>
-        <td> @Model.Amount₽</td>
+        <td> @Model.Total₽</td>
         <td></td>
         <td></td>
     </tr>

@@ -24,7 +24,7 @@ namespace WomanShop.Storages
                 }
                 else
                 {
-                    existingCartItem.Count++;
+                    existingCartItem.Quantity++;
                 }
             }
         }
@@ -36,17 +36,17 @@ namespace WomanShop.Storages
             if (cartItem == null) { return; }
             if (act == "increase")
             {
-                cartItem.Count++;
+                cartItem.Quantity++;
             }
             else if (act == "decrease") 
             {
-                if (cartItem.Count == 1||cartItem.Count==0)
+                if (cartItem.Quantity == 1||cartItem.Quantity ==0)
                 {
                     cart.Items.Remove(cartItem);
                 }
                 else
                 {
-                    cartItem.Count--;
+                    cartItem.Quantity--;
                 }
             }
         }

@@ -4,21 +4,30 @@
     {
         public Guid Id { get; set; }
         public int UserId { get; set; }
-        public List<CartItem> Items{ get; set; }
+        public List<CartItem> Items { get; set; }
 
-        public Cart( int userId,Product product )
+        public Cart(int userId, Product product)
         {
             Id = new Guid();
             UserId = userId;
-            Items = new List<CartItem>() {new CartItem(product) };
+            Items = new List<CartItem>() { new CartItem(product) };
         }
 
-        public decimal Amount
+        public decimal Total
         {
-            get 
+            get
             {
-                return Items.Sum(cartItem=>cartItem.Amount);
+                return Items?.Sum(cartItem => cartItem.Total) ?? 0;
             }
         }
+        public int Quantity
+        {
+            get
+            {
+                return Items?.Sum(cartItem => cartItem.Quantity) ?? 0;
+            }
+        }
+
+
     }
 }
