@@ -6,7 +6,7 @@ namespace WomanShop.Controllers
     public class AuthController : Controller
     {
         [HttpPost]
-        public IActionResult Login(User user,string repeatedPassword)
+        public IActionResult Login(Login login)
         {
             return RedirectToAction("index", "home");
 
@@ -16,7 +16,7 @@ namespace WomanShop.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Registration(User user, string repeatedPassword)
+        public IActionResult Registration(Registration registration)
         {
             return RedirectToAction("index", "home");
         }
