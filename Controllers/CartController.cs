@@ -39,9 +39,9 @@ namespace WomanShop.Controllers
             cartsStorage.Clear(Constants.UserId);
             return RedirectToAction("Index");
         }
-        public IActionResult ChangeCount(Guid cartId,Guid cartItemId, string act)
+        public IActionResult ChangeCount(Guid cartId,int productId, string act)
         {
-            cartsStorage.Change(cartId, cartItemId, act);
+            cartsStorage.Change(cartId, productId, act);
             return RedirectToAction("Index");
         }
 

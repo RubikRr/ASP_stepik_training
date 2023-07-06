@@ -28,6 +28,18 @@
             }
         }
 
+        public Cart(Cart other)
+        {
+            this.Id = other.Id;
+            this.UserId = other.UserId;
+            this.Items = other.Items;
 
+        }
+
+        // Копируем фабрику
+        public static Cart GetInstance(Cart x)
+        {
+            return new Cart(x);
+        }
     }
 }

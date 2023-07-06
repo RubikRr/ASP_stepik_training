@@ -4,17 +4,16 @@
     {
         public Guid Id { get; }
 
-        public string FIO { get; }
+        public UserDeliveryInfo DeliveryInfo { get; set; }
+        public List<CartItem> Items { get; set; }
 
-        public string Address { get; }
-        public string Phone { get; set; }
-
-        public Order(string fIO, string address, string phone)
+        public Order() { }
+        public Order(UserDeliveryInfo deliveryInfo,List<CartItem> items)
         {
             Id = new Guid();
-            FIO = fIO;
-            Address = address;
-            Phone = phone;
+            DeliveryInfo= deliveryInfo;
+            Items = items;
         }
+
     }
 }

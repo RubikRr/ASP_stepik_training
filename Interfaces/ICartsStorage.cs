@@ -13,7 +13,7 @@ namespace WomanShop.Interfaces
 
         public void Clear(int userId);
 
-        public void Change(Guid cartId, Guid cartItemId, string act);
+        public void Change(Guid cartId, int productId, string act);
 
         public void Destroy(int userId);
 

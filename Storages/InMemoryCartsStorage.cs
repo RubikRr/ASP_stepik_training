@@ -29,10 +29,10 @@ namespace WomanShop.Storages
             }
         }
 
-        public void Change(Guid cartId, Guid cartItemId, string act)
+        public void Change(Guid cartId, int productId, string act)
         {
             var cart = carts.FirstOrDefault(cart => cart.Id == cartId);
-            var cartItem=cart.Items.FirstOrDefault(item => item.Id == cartItemId);
+            var cartItem=cart.Items.FirstOrDefault(item => item.Product.Id == productId);
             if (cartItem == null) { return; }
             if (act == "increase")
             {

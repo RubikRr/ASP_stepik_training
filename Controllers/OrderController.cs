@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WomanShop.Interfaces;
+using WomanShop.Models;
 
 namespace WomanShop.Controllers
 {
@@ -14,16 +15,21 @@ namespace WomanShop.Controllers
             ordersStorage = _ordersStorage;
             cartsStorage = _cartStorage;
         }
-
+            
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Confirm()
+        [HttpPost]
+        public IActionResult Confirm(UserDeliveryInfo user)
         {
             var cart = cartsStorage.TryGetByUserId(Constants.UserId);
-            ordersStorage.Add(cart);
+            var order = new Order
+            {
+                DeliveryInfo = user,
+                Items=cart.Items
+            };
+            ordersStorage.Add(order);
             //cartsStorage.Destroy(Constants.UserId);
             cartsStorage.Clear(Constants.UserId);
             return View();
