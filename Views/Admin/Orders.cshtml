@@ -1,19 +1,4 @@
 ﻿<div class="row">
-    <div class="col-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="/admin/orders">Заказы</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/users">Пользователи</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/roles">Роли</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/products">Продукты</a>
-          </li>
-        </ul>
-    </div>
+        @await Html.PartialAsync("LeftAdminMenu")
     <div class="col-9"><h1>Заказы</h1></div>
 </div>
