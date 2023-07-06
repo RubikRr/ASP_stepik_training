@@ -5,11 +5,22 @@ namespace WomanShop.Controllers
 {
     public class AuthController : Controller
     {
-        public IActionResult Login(User user)
+        [HttpPost]
+        public IActionResult Login(User user,string repeatedPassword)
+        {
+            return RedirectToAction("index", "home");
+
+        }
+        public IActionResult Login()
         {
             return View();
         }
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult Registration(User user, string repeatedPassword)
+        {
+            return RedirectToAction("index", "home");
+        }
+        public IActionResult Registration()
         {
             return View();
         }
