@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WomanShop.Interfaces;
 using WomanShop.Models;
 
@@ -7,10 +8,11 @@ namespace WomanShop.Controllers
     public class AdminController:Controller
     {
         private IProductsStorage productsStorage;
-
-        public AdminController(IProductsStorage _productsStorage)
+        private IRolesStorage rolesStorage;
+        public AdminController(IProductsStorage _productsStorage, IRolesStorage _rolesStorage)
         {
             productsStorage = _productsStorage;
+            rolesStorage = _rolesStorage;
         }
 
         public IActionResult Index()
@@ -27,14 +29,37 @@ namespace WomanShop.Controllers
         }
         public IActionResult Roles()
         {
-            return View();
+            var roles=rolesStorage.GetAll();
+            return View(roles);
         }
         public IActionResult Products()
         {
             var products = productsStorage.GetAll();
             return View(products);
         }
-
+        public IActionResult RemoveRole(int roleId)
+        {
+            rolesStorage.Remove(roleId);
+            return RedirectToAction("Roles");
+        }
+        [HttpPost]
+        public IActionResult AddRole(Role role)
+        {
+            if (rolesStorage.IsInStorage(role))
+            {
+                ModelState.AddModelError("","Данная роль уже существуют.");
+            }
+            if (ModelState.IsValid)
+            {
+                rolesStorage.Add(role);
+                return RedirectToAction("Roles");
+            }
+            return View(role);
+        }
+        public IActionResult AddRole()
+        {
+            return View();
+        }
         public IActionResult RemoveProduct(int productId)
         {
             productsStorage.Remove(productId);

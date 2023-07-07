@@ -11,7 +11,8 @@ namespace WomanShop
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddSingleton<IProductsStorage,InMemoryProductsStorage>();
+            builder.Services.AddSingleton<IRolesStorage, InMemoryRolesStorage>();
+            builder.Services.AddSingleton<IProductsStorage, InMemoryProductsStorage>();
             builder.Services.AddSingleton<IFavoritesStorage, InMemoryFavoritesStorage>();
             builder.Services.AddSingleton<ICartsStorage,InMemoryCartsStorage>();
             builder.Services.AddSingleton<IOrdersStorage, InMemoryOrdersStorage>();
