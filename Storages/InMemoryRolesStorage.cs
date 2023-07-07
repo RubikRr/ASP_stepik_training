@@ -25,10 +25,7 @@ namespace WomanShop.Storages
         }
         public void Remove(int roleId)
         { 
-            var role = roles.FirstOrDefault(role=>role.Id==roleId);
-            if (role == null)
-                return;
-            roles.Remove(role);
+            roles.RemoveAll(role=>role.Id==roleId);
         }
     }
 }
