@@ -11,7 +11,7 @@ namespace WomanShop.Controllers
             if(ModelState.IsValid)
                 return RedirectToAction("index", "home");
 
-            return View(login);
+            return RedirectToAction("Login");
         }
         public IActionResult Login()
         {
@@ -20,9 +20,13 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult Registration(Registration registration)
         {
+            if(registration.Password==registration.Email)
+            {
+                ModelState.AddModelError("","Логин и пароль не должны совпадать");
+            }
             if(ModelState.IsValid)
                 return RedirectToAction("index", "home");
-            return View(registration);
+            return RedirectToAction("Registration");
         }
         public IActionResult Registration()
         {

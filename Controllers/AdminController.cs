@@ -56,14 +56,14 @@ namespace WomanShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditProduct(int productId,Product product)
+        public IActionResult EditProduct(Product product)
         {
             if (ModelState.IsValid) 
             {
-                productsStorage.Edit(productId, product);
+                productsStorage.Update(product);
                 return RedirectToAction("Products");
             }
-            return RedirectToAction("EditProduct", productId);
+            return RedirectToAction("EditProduct");
         }
         public IActionResult EditProduct(int productId)
         {

@@ -10,7 +10,7 @@ namespace WomanShop.Models
 
         [Required(ErrorMessage = "Необходимо заполнить поле с паролем")]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Необходимо заполнить поле с паролем")]
+        [Required(ErrorMessage = "Необходимо подтвердить пароль")]
         [Compare("Password",ErrorMessage ="Пароли не совпадат")]
         public string ConfirmPassword { get; set; }
     }

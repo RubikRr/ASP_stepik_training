@@ -5,7 +5,7 @@ namespace WomanShop.Models
     public class Product
     {
         static private int counter=0;
-        public int Id { get; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Введите название продукта")]
         public string Name { get; set; }
         [Required(ErrorMessage ="Введите цену продукта")]
@@ -17,17 +17,19 @@ namespace WomanShop.Models
         [Required(ErrorMessage = "Выберете фотографию")]
         public string ImagePath { get; set; }
 
-        public Product(){}
-
-        public Product(string name, decimal cost, string description, string imagePath)
+        public Product()
         {
             Id = counter;
+            counter++;
+        }
+
+        public Product(string name, decimal cost, string description, string imagePath):this()
+        {
             Name = name;
             Cost = cost;
             Description = description;
             ImagePath = imagePath;
 
-            counter++;
         }
     }
 }

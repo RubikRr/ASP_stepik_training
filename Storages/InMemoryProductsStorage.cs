@@ -21,12 +21,11 @@ namespace WomanShop.Storages
         public List<Product> GetAll() => products;
         public void Add(Product product)
         {
-            var newProduct = new Product(product.Name,product.Cost,product.Description,product.ImagePath);
-            products.Add(newProduct);   
+            products.Add(product);   
         }
-        public void Edit(int productId,Product product)
+        public void Update(Product product)
         {
-            var productInStorage = this.TryGetById(productId);
+            var productInStorage = this.TryGetById(product.Id);
             productInStorage.Name = product.Name;
             productInStorage.Cost = product.Cost;
             productInStorage.Description = product.Description;
