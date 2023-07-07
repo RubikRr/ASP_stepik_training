@@ -9,5 +9,7 @@ namespace WomanShop.Interfaces
         public void Remove(int productId);
         public void Add(Product product);
         public void Edit(int productId, Product product);
+
+        public List<Product> Search(string name);
     }
 }

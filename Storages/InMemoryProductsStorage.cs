@@ -6,7 +6,6 @@ namespace WomanShop.Storages
 {
     public class InMemoryProductsStorage : IProductsStorage
     {
-
         private readonly List<Product> products = new List<Product>()
         {
             new Product("Пиджак",2500,"Женский пиджак","/images/products/image1.png"),
@@ -23,8 +22,7 @@ namespace WomanShop.Storages
         public void Add(Product product)
         {
             var newProduct = new Product(product.Name,product.Cost,product.Description,product.ImagePath);
-            products.Add(newProduct);
-        
+            products.Add(newProduct);   
         }
         public void Edit(int productId,Product product)
         {
@@ -34,10 +32,18 @@ namespace WomanShop.Storages
             productInStorage.Description = product.Description;
             productInStorage.ImagePath=product.ImagePath;
         }
+        public List<Product> Search(string name)
+        {
+            var searchProducts = products.Where(product => product.Name.ToLower().StartsWith(name.ToLower())).ToList();
+            return searchProducts;
+        }
         public void Remove(int productId)
         {
             products.RemoveAll(product => product.Id == productId);
         }
-        public Product TryGetById(int id) => products.FirstOrDefault(pr => pr.Id == id);
+        public Product TryGetById(int id)
+        {
+           return products.FirstOrDefault(pr => pr.Id == id);
+        }
     }
 }

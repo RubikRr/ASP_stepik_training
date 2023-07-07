@@ -18,5 +18,12 @@ namespace WomanShop.Controllers
         {
             return View(productsStorage.GetAll());
         }
+
+        [HttpPost]
+        public IActionResult Search(string productName)
+        {   
+            var products=productsStorage.Search(productName);
+            return View(products);
+        }
     }
 }
