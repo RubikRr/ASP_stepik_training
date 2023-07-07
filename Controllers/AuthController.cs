@@ -8,8 +8,10 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult Login(Login login)
         {
-            return RedirectToAction("index", "home");
+            if(ModelState.IsValid)
+                return RedirectToAction("index", "home");
 
+            return View(login);
         }
         public IActionResult Login()
         {
@@ -18,7 +20,9 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult Registration(Registration registration)
         {
-            return RedirectToAction("index", "home");
+            if(ModelState.IsValid)
+                return RedirectToAction("index", "home");
+            return View(registration);
         }
         public IActionResult Registration()
         {
