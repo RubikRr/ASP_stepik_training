@@ -43,8 +43,12 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-            productsStorage.Add(product);
-            return RedirectToAction("Products");
+            if (ModelState.IsValid)
+            {
+                productsStorage.Add(product);
+                return RedirectToAction("Products");
+            }
+            return View();
         }
         public IActionResult AddProduct()
         {
@@ -54,8 +58,12 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult EditProduct(int productId,Product product)
         {
-            productsStorage.Edit(productId, product);
-            return RedirectToAction("Products");
+            if (ModelState.IsValid) 
+            {
+                productsStorage.Edit(productId, product);
+                return RedirectToAction("Products");
+            }
+            return RedirectToAction("EditProduct", productId);
         }
         public IActionResult EditProduct(int productId)
         {
