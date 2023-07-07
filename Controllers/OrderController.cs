@@ -23,22 +23,26 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult Confirm(UserDeliveryInfo user)
         {
-            var cart = cartsStorage.TryGetByUserId(Constants.UserId);
-            var order = new Order
+            if (ModelState.IsValid)
             {
-                DeliveryInfo = user,
-                Items=cart.Items
-            };
-            ordersStorage.Add(order);
-            //cartsStorage.Destroy(Constants.UserId);
-            cartsStorage.Clear(Constants.UserId);
-            return View();
+                var cart = cartsStorage.TryGetByUserId(Constants.UserId);
+                var order = new Order
+                {
+                    DeliveryInfo = user,
+                    Items = cart.Items
+                };
+                ordersStorage.Add(order);
+                //cartsStorage.Destroy(Constants.UserId);
+                cartsStorage.Clear(Constants.UserId);
+                return View();
+            }
+            return RedirectToAction("Checkout", user);
         }
 
         public IActionResult Checkout()
         {
-            var cart=cartsStorage.TryGetByUserId(Constants.UserId);
-            return View(cart);
+            //var cart=cartsStorage.TryGetByUserId(Constants.UserId);
+            return View();
         }
     }
 }

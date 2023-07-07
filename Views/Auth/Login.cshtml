@@ -6,11 +6,11 @@
       <div class="col-6">
           <div class="justify-content-center"><h1>Вход</h1></div>
           <div class="mb-3">
-              <span asp-validation-for="Email"></span>
+              <span style="color:red" asp-validation-for="Email"></span>
               <input asp-for="Email" class="form-control" placeholder="Логин">
           </div>
           <div class="mb-3">
-                <span asp-validation-for="Password"></span>
+                <span style="color:red" asp-validation-for="Password"></span>
                 <input asp-for="Password" type="password" class="form-control" placeholder="Пароль">
           </div>
           <div class="mb-3 form-check">

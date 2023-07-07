@@ -45,11 +45,7 @@ namespace WomanShop.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Checkout()
-        {
-            var cart = cartsStorage.TryGetByUserId(Constants.UserId);
-            return View(cart);
-        }
+     
 
      
     }
