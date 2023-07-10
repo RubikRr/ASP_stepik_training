@@ -19,6 +19,7 @@ namespace WomanShop
             builder.Services.AddSingleton<IRolesStorage, InMemoryRolesStorage>();
             builder.Services.AddSingleton<IProductsStorage, InMemoryProductsStorage>();
             builder.Services.AddSingleton<IFavoritesStorage, InMemoryFavoritesStorage>();
+            builder.Services.AddSingleton<IUsersStorage, InMemoryUsersStorage>();
             builder.Services.AddSingleton<ICartsStorage,InMemoryCartsStorage>();
             builder.Services.AddSingleton<IOrdersStorage, InMemoryOrdersStorage>();
             builder.Services.Configure<RequestLocalizationOptions>(options =>
