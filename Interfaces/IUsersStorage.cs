@@ -10,5 +10,7 @@ namespace WomanShop.Interfaces
         public User TryGetUserByEmail(string email);
 
         public bool IsCorrectPassword(Login login);
+
+        public List<User> GetAll();
     }
 }

@@ -1,0 +1,31 @@
+﻿@model List<User>
+<div class="row">
+        @await Html.PartialAsync("LeftAdminMenu")
+
+    <div class="col-9">
+        <h3>Список пользователей</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="w-50">Email</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Номер</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var user in Model)
+            {   
+
+                <tbody>
+                    <tr>
+                        <td>@user.Email</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+</div>
