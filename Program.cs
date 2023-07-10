@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Options;
+using Serilog;
 using System.Globalization;
 using WomanShop.Interfaces;
 using WomanShop.Storages;
@@ -9,7 +10,9 @@ namespace WomanShop
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
+            builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
             builder.Services.AddControllersWithViews();
 
@@ -33,7 +36,7 @@ namespace WomanShop
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            app.UseSerilogRequestLogging();
 
             app.UseStaticFiles();
 
