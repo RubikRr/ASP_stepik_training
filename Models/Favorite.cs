@@ -9,7 +9,7 @@
 
         public Favorite( int userId)
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             UserId = userId;
             Products = new List<Product>();
         }

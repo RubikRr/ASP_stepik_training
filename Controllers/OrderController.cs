@@ -26,14 +26,10 @@ namespace WomanShop.Controllers
             if (ModelState.IsValid)
             {
                 var cart = cartsStorage.TryGetByUserId(Constants.UserId);
-                var order = new Order
-                {
-                    DeliveryInfo = user,
-                    Items = cart.Items
-                };
+                var order = new Order(user, cart.Items);
                 ordersStorage.Add(order);
                 //cartsStorage.Destroy(Constants.UserId);
-                cartsStorage.Clear(Constants.UserId);
+                //cartsStorage.Clear(Constants.UserId);
                 return View();
             }
             return RedirectToAction("Checkout", user);

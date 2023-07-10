@@ -9,10 +9,12 @@ namespace WomanShop.Controllers
     {
         private IProductsStorage productsStorage;
         private IRolesStorage rolesStorage;
-        public AdminController(IProductsStorage _productsStorage, IRolesStorage _rolesStorage)
+        private IOrdersStorage ordersStorage;
+        public AdminController(IProductsStorage _productsStorage, IRolesStorage _rolesStorage, IOrdersStorage _ordersStorage)
         {
             productsStorage = _productsStorage;
             rolesStorage = _rolesStorage;
+            ordersStorage = _ordersStorage;
         }
 
         public IActionResult Index()
@@ -21,7 +23,8 @@ namespace WomanShop.Controllers
         }
         public IActionResult Orders()
         {
-            return View();
+            var orders = ordersStorage.GetAll();
+            return View(orders);
         }
         public IActionResult Users()
         {
@@ -95,6 +98,10 @@ namespace WomanShop.Controllers
             var product=productsStorage.TryGetById(productId);
             return View(product);
         }
-
+        public IActionResult ShowOrder(Guid orderId)
+        {
+            var order = ordersStorage.TryGetById(orderId);
+            return View(order);
+        }
     }
 }

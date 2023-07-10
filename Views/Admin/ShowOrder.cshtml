@@ -1,0 +1,53 @@
+﻿@model Order
+@if (Model == null)
+{
+    <h4>С заказом чето не так</h4>
+}
+<div class="row">
+    @await Html.PartialAsync("LeftAdminMenu")
+    <div class="col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Заказ №@Model.Number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Дата и время оформления:</td>
+                    <td>@Model.Date.ToShortDateString() в @Model.Date.ToShortTimeString()</td>
+                </tr>
+                <tr>
+                    <td>Адрес доставки:</td>
+                    <td>@Model.DeliveryInfo.Address</td>
+                </tr>
+                <tr>
+                    <td>Получатель:</td>
+                    <td>@Model.DeliveryInfo.Name</td>
+                </tr>
+                <tr>
+                    <td>Телефон:</td>
+                    <td>@Model.DeliveryInfo.Phone</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Комментарий:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Сумма заказа:</td>
+                    <td>@Model.Total</td>
+                </tr>
+                <tr>
+                    <td>Статус заказа:</td>
+                    <td>@Model.Status</td>
+                    <td>@Html.DropDownList("orderStatus", Html.GetEnumSelectList(typeof(OrderdStatus)))</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -17,7 +17,6 @@ namespace WomanShop.Models
 
         public Role(string name):this()
         {
-
             Name = name;
         }
     }

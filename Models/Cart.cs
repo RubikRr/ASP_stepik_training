@@ -8,7 +8,7 @@
 
         public Cart(int userId, Product product)
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             UserId = userId;
             Items = new List<CartItem>() { new CartItem(product) };
         }
