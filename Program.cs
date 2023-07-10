@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+using System.Globalization;
 using WomanShop.Interfaces;
 using WomanShop.Storages;
 
@@ -16,6 +18,14 @@ namespace WomanShop
             builder.Services.AddSingleton<IFavoritesStorage, InMemoryFavoritesStorage>();
             builder.Services.AddSingleton<ICartsStorage,InMemoryCartsStorage>();
             builder.Services.AddSingleton<IOrdersStorage, InMemoryOrdersStorage>();
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[] { new CultureInfo("en-US") };
+                options.DefaultRequestCulture=new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            }
+            );
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
@@ -28,7 +38,11 @@ namespace WomanShop
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            var localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>().Value;
+                app.UseRequestLocalization(localizationOptions);
+            app.MapControllerRoute(
+                name:"MyArea",
+                pattern:"{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",

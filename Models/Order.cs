@@ -1,12 +1,20 @@
-﻿namespace WomanShop.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace WomanShop.Models
 {
     public enum OrderdStatus 
     {
-        Новый=0,
-        Подтвержденный=1, 
-        Оплаченный=2,
-        Доставленный=3,
-        Завершенный=4
+        [Display(Name = "Новый")]
+        New = 0,
+        [Display(Name = "Подтвержденный")]
+        Confirmed = 1,
+        [Display(Name = "Оплаченный")]
+        Paid = 2,
+        [Display(Name = "Доставленный")]
+        Delivered = 3,
+        [Display(Name = "Завершенный")]
+        Complited = 4
 
     }
     public class Order
@@ -32,7 +40,7 @@
         public Order(UserDeliveryInfo deliveryInfo,List<CartItem> items)
         {
             Id = Guid.NewGuid();
-            Status = OrderdStatus.Новый;
+            Status = OrderdStatus.New;
             DeliveryInfo= deliveryInfo;
             Items = items;
             Date = DateTime.Now;

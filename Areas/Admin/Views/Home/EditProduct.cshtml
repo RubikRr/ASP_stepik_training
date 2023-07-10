@@ -1,32 +1,39 @@
 ﻿@model Product
-<form method="post" asp-controller="admin" asp-action="addProduct">
+
+<form method="post" asp-area="admin" asp-controller="home" asp-action="editProduct">
     <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Название</label>
         <div class="col-sm-4">
-            <input type="text" asp-for="Name" id="name"class="form-control" >
+            <input type="text" asp-for="Name" id="name"value=@Model.Name class="form-control" >
          </div>
-         <span style="color:red" asp-validation-for="Name"></span>
+          <span style="color:red" asp-validation-for="Name"></span>
     </div>
     <div class="row mb-3">
         <label for="cost" class="col-sm-2 col-form-label">Цена ₽</label>
         <div class="col-sm-4">
-            <input type="number" asp-for="Cost" id="cost"class="form-control">
+            <input type="number" asp-for="Cost" id="cost" value=@Model.Cost class="form-control">
          </div>
          <span style="color:red" asp-validation-for="Cost"></span>
     </div>
      <div class="row mb-3">
         <label for="description" class="col-sm-2 col-form-label">Описание</label>
         <div class="col-sm-4">
-            <textarea class="form-control" asp-for="Description" id="description"></textarea>
+            <textarea class="form-control" asp-for="Description" id="description">@Model.Description</textarea>
          </div>
          <span style="color:red" asp-validation-for="Description"></span>
     </div>
     <div class="row mb-3">
         <label for="image" class="col-sm-2 col-form-label">Картинка</label>
         <div class="col-sm-4">
+            <img src="@Model.ImagePath" class="card-img-top img-thumbnail" alt="..."></img>
             <input type="file" asp-for="ImagePath" id="image" class="form-control">
         </div>
         <span style="color:red" asp-validation-for="ImagePath"></span>
     </div>
-   <button class="btn btn-success" type="submit">Добавить</button>
+    <div class="row mb-3">
+        <div class="col-sm-4">
+            <input type="number" name="id" hidden="true" value=@Model.Id class="form-control">
+         </div>
+    </div>
+   <button class="btn btn-success"  type="submit">Изменить</button>
 </form>

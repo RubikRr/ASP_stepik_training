@@ -4,7 +4,7 @@
 
     <div class="col-9">
         <h3>Продукты</h3>
-        <a href="/admin/addProduct">Добавить новый продукт</a>
+        <a asp-area="admin" asp-controller="home" asp-action="addProduct">Добавить новый продукт</a>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -23,8 +23,8 @@
                         <td>@(product.Id+1)</td>
                         <td>@product.Name</td>
                         <td>@product.Cost</td>
-                        <td><a href="/admin/editProduct?productId=@product.Id">Редактировать</a></td>
-                        <td><a href="/admin/removeProduct?productId=@product.Id">Удалить</a></td>
+                        <td><a asp-area="admin" asp-controller="home" asp-action="editProduct" asp-route-productId=@product.Id>Редактировать</a></td>
+                        <td><a asp-area="admin" asp-controller="home" asp-action="removeProduct" asp-route-productId=@product.Id>Удалить</a></td>
                     </tr>
                 </tbody>
             }

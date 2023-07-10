@@ -13,7 +13,7 @@
                  <tbody class="table-group-divider">
                 <tr>
                     <td class="w-75">@role.Name</td>
-                    <td><a href="/admin/removeRole?roleId=@role.Id">Удалить</a></td>
+                    <td><a asp-area="admin" asp-controller="home" asp-action="removeRole" asp-route-roleId=@role.Id>Удалить</a></td>
                 </tr>
             </tbody>
             }
@@ -21,7 +21,7 @@
             <tfoot>
                 <tr>
                    <th colspan="1"></th>
-                   <th><a href="/admin/addRole">Добавить</a></th>
+                   <th><a asp-area="admin" asp-controller="home" asp-action="addRole">Добавить</a></th>
                 </tr>
             </tfoot>
         </table>

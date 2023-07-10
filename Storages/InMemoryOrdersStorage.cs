@@ -1,4 +1,5 @@
-﻿using WomanShop.Interfaces;
+﻿using System.Security.Cryptography.X509Certificates;
+using WomanShop.Interfaces;
 using WomanShop.Models;
 
 namespace WomanShop.Storages
@@ -16,6 +17,15 @@ namespace WomanShop.Storages
         public Order TryGetById(Guid id)
         {
             return orders.FirstOrDefault(order => order.Id == id);
+        }
+        public void UpdateStatus(Guid id, OrderdStatus newStatus)
+        {
+            var order = this.TryGetById(id);
+            if (order != null) 
+            {
+                order.Status = newStatus;
+            }
+
         }
     }
 }

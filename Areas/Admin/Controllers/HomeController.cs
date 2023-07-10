@@ -3,14 +3,15 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WomanShop.Interfaces;
 using WomanShop.Models;
 
-namespace WomanShop.Controllers
+namespace WomanShop.Areas.Admin.Controllers
 {
-    public class AdminController:Controller
+    [Area("Admin")]
+    public class HomeController : Controller
     {
         private IProductsStorage productsStorage;
         private IRolesStorage rolesStorage;
         private IOrdersStorage ordersStorage;
-        public AdminController(IProductsStorage _productsStorage, IRolesStorage _rolesStorage, IOrdersStorage _ordersStorage)
+        public HomeController(IProductsStorage _productsStorage, IRolesStorage _rolesStorage, IOrdersStorage _ordersStorage)
         {
             productsStorage = _productsStorage;
             rolesStorage = _rolesStorage;
@@ -32,7 +33,7 @@ namespace WomanShop.Controllers
         }
         public IActionResult Roles()
         {
-            var roles=rolesStorage.GetAll();
+            var roles = rolesStorage.GetAll();
             return View(roles);
         }
         public IActionResult Products()
@@ -50,7 +51,7 @@ namespace WomanShop.Controllers
         {
             if (rolesStorage.IsInStorage(role))
             {
-                ModelState.AddModelError("","Данная роль уже существуют.");
+                ModelState.AddModelError("", "Данная роль уже существуют.");
             }
             if (ModelState.IsValid)
             {
@@ -86,7 +87,7 @@ namespace WomanShop.Controllers
         [HttpPost]
         public IActionResult EditProduct(Product product)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 productsStorage.Update(product);
                 return RedirectToAction("Products");
@@ -95,13 +96,19 @@ namespace WomanShop.Controllers
         }
         public IActionResult EditProduct(int productId)
         {
-            var product=productsStorage.TryGetById(productId);
+            var product = productsStorage.TryGetById(productId);
             return View(product);
         }
-        public IActionResult ShowOrder(Guid orderId)
+        public IActionResult OrderDetails(Guid orderId)
         {
             var order = ordersStorage.TryGetById(orderId);
             return View(order);
+        }
+        [HttpPost]
+        public IActionResult UpdateOrderStatus(Guid orderId, OrderdStatus status)
+        {
+            ordersStorage.UpdateStatus(orderId, status);
+            return RedirectToAction("Orders");
         }
     }
 }
