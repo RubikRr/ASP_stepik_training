@@ -24,8 +24,20 @@ else
               <td>@position.Product.Name</td>
               <td>@position.Quantity</td>
               <td>@position.Product.Cost</td>
-              <td><a class="btn btn-dark border counter" href="/cart/ChangeCount?cartId=@Model.Id&productId=@position.Product.Id&act=decrease">-</a></td>
-              <td><a class="btn btn-dark border counter" href="/cart/ChangeCount?cartId=@Model.Id&productId=@position.Product.Id&act=increase">+</a></td>
+              <td><a class="btn btn-dark border counter"
+                  asp-area=""
+                  asp-controller="cart"
+                  asp-action="ChangeCount"
+                  asp-route-cartId=@Model.Id
+                  asp-route-productId=@position.Product.Id
+                  asp-route-act="decrease">-</a></td>
+              <td><a class="btn btn-dark border counter"
+                  asp-area=""
+                  asp-controller="cart"
+                  asp-action="ChangeCount"
+                  asp-route-cartId=@Model.Id
+                  asp-route-productId=@position.Product.Id
+                  asp-route-act="increase">+</a></td>
           </tr>
         }
   </tbody>

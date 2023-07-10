@@ -1,5 +1,5 @@
-﻿using WomanShop.Interfaces;
-using WomanShop.Models;
+﻿using WomanShop.Areas.Admin.Models;
+using WomanShop.Interfaces;
 
 namespace WomanShop.Storages
 {

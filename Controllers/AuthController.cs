@@ -20,7 +20,6 @@ namespace WomanShop.Controllers
             if (usersStorage.TryGetUserByEmail(login.Email) == null)
             {
                 ModelState.AddModelError("","Пользователь с таким email не найден");
-
             }
             if (!usersStorage.IsCorrectPassword(login))
             {
@@ -47,7 +46,7 @@ namespace WomanShop.Controllers
             }
             if (ModelState.IsValid)
             {
-                var user = new User(registration);
+                var user = new User(registration.Email, registration.Password);
                 usersStorage.Add(user);
                 return RedirectToAction("index", "home");
             }

@@ -3,12 +3,16 @@
     public class User
     {
         public Guid Id { get; set; }
-        public Registration Registration { get; set; }
+        public string Email { get; set; }
 
-        public User(Registration registration)
+        public string Password { get; set; }
+
+        public User(string email, string password)
         {
             Id=Guid.NewGuid();
-            Registration = registration;
+            Email = email;
+            Password = password;
         }
+
     }   
 }

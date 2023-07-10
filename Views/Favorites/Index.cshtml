@@ -15,7 +15,10 @@ else
                     <a class="card-title" href="/product/index/@product.Id"> @product.Name </a>
                     <h5>Цена:@product.Cost р.</h5>
                     <p>Описание:@product.Description</p>
-                    <a class="btn btn-dark" href="/cart/add?productId=@product.Id">Добавить в карзину</a>
+                    <a class="btn btn-dark" asp-area=""
+                    asp-controller="cart"
+                    asp-action="add"
+                    asp-route-productId="@product.Id">Добавить в карзину</a>
                 </div> 
             </div>
        </div>

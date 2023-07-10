@@ -18,13 +18,13 @@ namespace WomanShop.Storages
         }
         public User TryGetUserByEmail(string email)
         {
-            return users?.FirstOrDefault(user => user.Registration.Email == email)??null;
+            return users?.FirstOrDefault(user => user.Email == email)??null;
         }
 
         public bool IsCorrectPassword(Login login)
         {
             var user=TryGetUserByEmail(login.Email);
-            return user != null && user.Registration.Password == login.Password;
+            return user != null && user.Password == login.Password;
         }
     }
 }

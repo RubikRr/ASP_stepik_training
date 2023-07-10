@@ -3,7 +3,7 @@
 {
     <h4>С заказом чето не так</h4>
 }
-<form method="post" admin" asp-area="admin" asp-controller="home" asp-action="UpdateOrderStatus" asp-route-orderId=@Model.Id>
+<form method="post" admin" asp-area="admin" asp-controller="order" asp-action="UpdateStatus" asp-route-orderId=@Model.Id>
 <div class="row">
     @await Html.PartialAsync("LeftAdminMenu")
     <div class="col-9">

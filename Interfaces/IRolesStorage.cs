@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using WomanShop.Models;
+using WomanShop.Areas.Admin.Models;
 
 namespace WomanShop.Interfaces
 {

@@ -4,7 +4,10 @@
        <div class="col-3 mb-5">     
             <div class="card h-100"> 
                 <div class="card-header">
-                    <a onclick="myFunction(this);" href="/favorites/add?productId=@product.Id" class="btn ml-3 fa fa-heart-o"><i class=""></i></a>
+                    <a onclick="myFunction(this);" asp-area=""
+                    asp-controller="favorites"
+                    asp-action="add"
+                    asp-route-productId=@product.Id class="btn ml-3 fa fa-heart-o"><i class=""></i></a>
                 </div>
                 <img src="@product.ImagePath" class="card-img-top img-thumbnail" alt="Упс... Картинка убежала">
                 <div class="card-body">
@@ -12,7 +15,11 @@
 
                     <h5>Цена:@product.Cost р.</h5>
                     <p>Описание:@product.Description</p>
-                    <a class="btn btn-dark" href="/cart/add?productId=@product.Id">Добавить в корзину</a>
+                    <a class="btn btn-dark" 
+                    asp-area=""
+                    asp-controller="cart"
+                    asp-action="add"
+                    asp-route-productId=@product.Id>Добавить в корзину</a>
                 </div> 
             </div>
        </div>
