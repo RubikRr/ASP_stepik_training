@@ -13,17 +13,17 @@
                  <tbody class="table-group-divider">
                 <tr>
                     <td class="w-75">@role.Name</td>
-                    <td><a asp-area="admin" asp-controller="role" asp-action="remove" asp-route-roleId=@role.Id>Удалить</a></td>
+                    <td><a class="btn btn-danger" asp-area="admin" asp-controller="role" asp-action="remove" asp-route-roleId=@role.Id>Удалить</a></td>
                 </tr>
             </tbody>
             }
-           
             <tfoot>
                 <tr>
                    <th colspan="1"></th>
-                   <th><a asp-area="admin" asp-controller="role" asp-action="add">Добавить</a></th>
+                   <th><a class="btn btn-success" asp-area="admin" asp-controller="role" asp-action="add">Добавить</a></th>
                 </tr>
             </tfoot>
         </table>
-    </div>
+        @*<a class="btn btn-success pull-right" asp-area="admin" asp-controller="role" asp-action="add">Добавить</a>
+    *@</div>
 </div>
