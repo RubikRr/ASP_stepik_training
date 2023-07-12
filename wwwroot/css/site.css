@@ -29,3 +29,7 @@ body {
 a {
     text-decoration: none;
 }
+.addUser {
+    width:150px;
+    height:60px;
+}

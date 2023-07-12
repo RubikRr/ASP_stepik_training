@@ -33,5 +33,10 @@ namespace WomanShop.Storages
             var user=TryGetUserByEmail(login.Email);
             return user != null && user.Password == login.Password;
         }
+
+        public void Remove(Guid id) 
+        {
+            users.RemoveAll(user => user.Id == id);
+        }
     }
 }

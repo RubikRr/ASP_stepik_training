@@ -1,6 +1,11 @@
 ﻿@model Product
 <form method="post" asp-area="admin" asp-controller="product" asp-action="add">
     <div class="row mb-3">
+        <div class="col-12">
+            <h1>Добавление продукта</h1>
+        </div>
+    </div>
+    <div class="row mb-3">
         <label for="name" class="col-sm-2 col-form-label">Название</label>
         <div class="col-sm-4">
             <input type="text" asp-for="Name" id="name"class="form-control" >

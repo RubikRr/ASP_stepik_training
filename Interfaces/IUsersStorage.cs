@@ -10,6 +10,7 @@ namespace WomanShop.Interfaces
         public User TryGetUserByEmail(string email);
 
         public bool IsCorrectPassword(Login login);
+        public void Remove(Guid userId);
 
         public List<User> GetAll();
     }
