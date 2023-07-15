@@ -2,6 +2,7 @@ using Microsoft.Extensions.Options;
 using Serilog;
 using System.Globalization;
 using WomanShop.Interfaces;
+using WomanShop.Models;
 using WomanShop.Storages;
 
 namespace WomanShop

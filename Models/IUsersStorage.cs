@@ -1,6 +1,4 @@
-﻿using WomanShop.Models;
-
-namespace WomanShop.Interfaces
+﻿namespace WomanShop.Models
 {
     public interface IUsersStorage
     {
@@ -11,6 +9,8 @@ namespace WomanShop.Interfaces
 
         public bool IsCorrectPassword(Login login);
         public void Remove(Guid userId);
+        public void Update(User userId);
+        public void UpdatePassword(User userId, string password, string confirmPassword);
 
         public List<User> GetAll();
     }

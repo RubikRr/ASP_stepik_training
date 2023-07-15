@@ -1,5 +1,4 @@
-﻿using WomanShop.Interfaces;
-using WomanShop.Models;
+﻿using WomanShop.Models;
 
 namespace WomanShop.Storages
 {
@@ -34,6 +33,21 @@ namespace WomanShop.Storages
             return user != null && user.Password == login.Password;
         }
 
+        
+        public void Update(User user)
+        {
+            var existingUser=TryGetUserById(user.Id);
+            existingUser.Password = user.Password;
+            existingUser.Email = user.Email;
+            existingUser.FirstName = user.FirstName;
+            existingUser.LastName = user.LastName;
+            existingUser.Phone= user.Phone;
+            existingUser.RoleName= user.RoleName;
+        }
+        public void UpdatePassword(User user, string password, string confirmPassword)
+        {
+
+        }
         public void Remove(Guid id) 
         {
             users.RemoveAll(user => user.Id == id);

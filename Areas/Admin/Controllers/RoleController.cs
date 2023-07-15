@@ -18,7 +18,7 @@ namespace WomanShop.Areas.Admin.Controllers
             var roles = rolesStorage.GetAll();
             return View(roles);
         }
-        public IActionResult Remove(int roleId)
+        public IActionResult Remove(Guid roleId)
         {
             rolesStorage.Remove(roleId);
             return RedirectToAction("Index");

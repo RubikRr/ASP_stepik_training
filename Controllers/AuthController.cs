@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Serilog;
-using WomanShop.Interfaces;
 using WomanShop.Models;
 
 namespace WomanShop.Controllers

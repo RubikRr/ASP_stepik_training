@@ -17,7 +17,8 @@ namespace WomanShop.Models
         public string LastName { get; set; }
         [Required(ErrorMessage = "Впишите номер телефона")]
         public string Phone { get; set; }
-
+        [Required(ErrorMessage = "Задайте права пользователя")]
+        public string RoleName { get; set; }
         public User(){
             Id=Guid.NewGuid();
         }

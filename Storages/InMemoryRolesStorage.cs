@@ -1,4 +1,6 @@
-﻿using WomanShop.Areas.Admin.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
+using WomanShop.Areas.Admin.Models;
 using WomanShop.Interfaces;
 
 namespace WomanShop.Storages
@@ -7,8 +9,8 @@ namespace WomanShop.Storages
     {
         private List<Role> roles = new List<Role>()
         {
-            new Role("Админ"),
-            new Role("Пользователь")
+            new Role("Пользователь"),
+            new Role("Админ")
         };
 
         public List<Role> GetAll()
@@ -23,9 +25,20 @@ namespace WomanShop.Storages
         {
             return roles.Any(roleInStorage=>roleInStorage.Name==role.Name);
         }
-        public void Remove(int roleId)
+        public void Remove(Guid roleId)
         { 
             roles.RemoveAll(role=>role.Id==roleId);
         }
+
+        public Role TryGetById(Guid id)
+        {
+            return roles.FirstOrDefault(role => role.Id == id);
+        }
+
+        public Role TryGetById(string Name)
+        {
+            return roles.FirstOrDefault(role => role.Name == Name);
+        }
+
     }
 }

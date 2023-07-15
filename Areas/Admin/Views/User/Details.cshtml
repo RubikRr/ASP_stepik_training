@@ -30,6 +30,10 @@
                         <td>@(Model?.Email ?? "-")</td>
                     </tr>
                     <tr>
+                        <td>Роль</td>
+                        <td>@(Model?.RoleName ?? "-")</td>
+                    </tr>
+                    <tr>
                         <td>Номер телефона</td>
                         <td>@(Model?.Phone ?? "-")</td>
                     </tr>
@@ -44,8 +48,16 @@
                                 type="button" data-bs-toggle="dropdown" 
                                 aria-expanded="false">Действия</button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Смена пароля</a></li>
-                                    <li><a class="dropdown-item" href="#">Редактирование данных</a></li>
+                                    <li><a class="dropdown-item" 
+                                     asp-area="admin"
+                                        asp-controller="user"
+                                        asp-action="updatePassword"
+                                        asp-route-userId=@Model.Id>Смена пароля</a></li>
+                                    <li><a class="dropdown-item"
+                                        asp-area="admin"
+                                        asp-controller="user"
+                                        asp-action="update"
+                                        asp-route-userId=@Model.Id>Редактирование данных</a></li>
                                     <li><a class="dropdown-item" href="#">Права доступа</a></li>
                                     <li>
                                         <a class="dropdown-item"

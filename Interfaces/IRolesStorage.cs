@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using WomanShop.Areas.Admin.Models;
 
 namespace WomanShop.Interfaces
@@ -7,7 +8,12 @@ namespace WomanShop.Interfaces
     {
         public List<Role> GetAll();
         public void Add(Role role);
-        public void Remove(int id);
+        public void Remove(Guid id);
         public bool IsInStorage(Role role);
+        public Role TryGetById(Guid id);
+
+
+        public Role TryGetById(string Name);
+      
     }
 }
