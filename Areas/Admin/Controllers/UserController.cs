@@ -16,7 +16,7 @@ namespace WomanShop.Areas.Admin.Controllers
         {
             usersStorage = _usersStorage;
             rolesStorage = _rolesStorage;
-            ViewBag.Roles = new SelectList(rolesStorage.GetAll(), nameof(Models.Role.Name), nameof(Models.Role.Name));
+            
 
         }
 
@@ -41,6 +41,7 @@ namespace WomanShop.Areas.Admin.Controllers
 
         public IActionResult Add()
         {
+            ViewBag.Roles = new SelectList(rolesStorage.GetAll(), nameof(Models.Role.Name), nameof(Models.Role.Name));
             return View();
         }
         [HttpPost]
