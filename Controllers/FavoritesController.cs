@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShop.DB.Interfaces;
+using WomanShop.Helpers;
 using WomanShop.Interfaces;
 
 namespace WomanShop.Controllers
@@ -19,11 +21,11 @@ namespace WomanShop.Controllers
             return View(favorite);
         }
 
-        public IActionResult Add(int productId)
+        public IActionResult Add(Guid productId)
         {
             var product = productsStorage.TryGetById(productId);
             if (product == null) { return RedirectToAction("Index"); } 
-            favoritesStorage.Add(Constants.UserId, product);
+            favoritesStorage.Add(Constants.UserId, Mapping.ToProductViewModel(product));
             return RedirectToAction("Index");
         }
     }

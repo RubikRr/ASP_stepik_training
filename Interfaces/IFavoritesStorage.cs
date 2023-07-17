@@ -6,6 +6,6 @@ namespace WomanShop.Interfaces
     {
         public Favorite TryGetByUserId(int userId);
 
-        public void Add(int userId, Product product);
+        public void Add(int userId, ProductViewModel product);
     }
 }

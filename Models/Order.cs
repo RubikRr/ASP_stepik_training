@@ -24,7 +24,7 @@ namespace WomanShop.Models
         public Guid Id { get; }
         public int Number { get; set; }
         public UserDeliveryInfo DeliveryInfo { get; set; }
-        public List<CartItem> Items { get; set; }
+        public List<CartItemViewModel> Items { get; set; }
         public OrderdStatus Status { get; set; }
         public decimal Total 
         { 
@@ -37,7 +37,7 @@ namespace WomanShop.Models
         public DateTime Date { get; set; }
 
         public Order() { }
-        public Order(UserDeliveryInfo deliveryInfo,List<CartItem> items)
+        public Order(UserDeliveryInfo deliveryInfo,List<CartItemViewModel> items)
         {
             Id = Guid.NewGuid();
             Status = OrderdStatus.New;

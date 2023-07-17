@@ -6,7 +6,7 @@ namespace WomanShop.Storages
     public class InMemoryFavoritesStorage:IFavoritesStorage
     {
         private List<Favorite> favorites = new List<Favorite>();
-        public void Add(int userId,Product product)
+        public void Add(int userId,ProductViewModel product)
         {
             var favorite = TryGetByUserId(userId);
             if (favorite == null)

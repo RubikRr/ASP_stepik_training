@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WomanShop.Interfaces;
+using OnlineShop.DB.Interfaces;
+using WomanShop.Helpers;
 using WomanShop.Models;
 using WomanShop.Storages;
 
@@ -12,11 +13,11 @@ namespace WomanShop.Controllers
         {
             productsStorage = _productsStorage;
         }
-        public IActionResult Index(int id)
+        public IActionResult Index(Guid productId)
         {
-            var product = productsStorage.TryGetById(id);
+            var product = productsStorage.TryGetById(productId);
             //return product != null? product.ToString():$"Товар с индексом {id} не существует";
-            return View(product);
+            return View(Mapping.ToProductViewModel(product));
         }
 
     }

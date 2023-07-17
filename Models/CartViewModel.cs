@@ -1,17 +1,10 @@
 ﻿namespace WomanShop.Models
 {
-    public class Cart
+    public class CartViewModel
     {
         public Guid Id { get; set; }
         public int UserId { get; set; }
-        public List<CartItem> Items { get; set; }
-
-        public Cart(int userId, Product product)
-        {
-            Id = Guid.NewGuid();
-            UserId = userId;
-            Items = new List<CartItem>() { new CartItem(product) };
-        }
+        public List<CartItemViewModel> Items { get; set; }
 
         public decimal Total
         {

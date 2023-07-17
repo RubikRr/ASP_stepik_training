@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using WomanShop.Interfaces;
-using WomanShop.Models;
-using WomanShop.Storages;
+using OnlineShop.DB.Interfaces;
+using WomanShop.Helpers;
 
 namespace WomanShop.Controllers
 {
@@ -16,14 +14,16 @@ namespace WomanShop.Controllers
         }
         public IActionResult Index()
         {
-            return View(productsStorage.GetAll());
+            var productsModel = productsStorage.GetAll();
+            var test = Mapping.ToProductsViewModel(productsModel);
+            return View(test);
         }
 
         [HttpPost]
         public IActionResult Search(string productName)
         {   
-            var products=productsStorage.Search(productName);
-            return View(products);
+            var productsModel=productsStorage.Search(productName);
+            return View(Mapping.ToProductsViewModel(productsModel));
         }
     }
 }

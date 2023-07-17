@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShop.DB.Interfaces;
+using WomanShop.Helpers;
 using WomanShop.Interfaces;
 using WomanShop.Models;
 
@@ -26,7 +28,7 @@ namespace WomanShop.Controllers
             if (ModelState.IsValid)
             {
                 var cart = cartsStorage.TryGetByUserId(Constants.UserId);
-                var order = new Order(user, cart.Items);
+                var order = new Order(user,Mapping.ToCartItemsViewModel(cart.Items));
                 ordersStorage.Add(order);
                 //cartsStorage.Destroy(Constants.UserId);
                 //cartsStorage.Clear(Constants.UserId);

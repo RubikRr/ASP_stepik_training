@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WomanShop.Interfaces;
+using OnlineShop.DB.Interfaces;
+using WomanShop.Helpers;
 
 namespace WomanShop.Views.Shared.Components.Cart
 {
@@ -14,7 +15,10 @@ namespace WomanShop.Views.Shared.Components.Cart
 
         public IViewComponentResult Invoke()
         {
-            var cart = cartsStorage.TryGetByUserId(Constants.UserId);
+            var cartModel = cartsStorage.TryGetByUserId(Constants.UserId);
+            if (cartModel == null) { return View("Cart", "0"); }
+            var cart=Mapping.ToCartViewModel(cartModel);
+            
             var ans= "";
             var productQuantity = (cart?.Quantity??0).ToString();
             if(productQuantity!="0")

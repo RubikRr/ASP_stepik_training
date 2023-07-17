@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using OnlineShop.DB.Interfaces;
 using WomanShop.Areas.Admin.Models;
-using WomanShop.Interfaces;
+using WomanShop.Helpers;
 using WomanShop.Models;
 
 namespace WomanShop.Areas.Admin.Controllers
@@ -18,9 +19,9 @@ namespace WomanShop.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var products = productsStorage.GetAll();
-            return View(products);
+            return View(Mapping.ToProductsViewModel(products));
         }
-        public IActionResult Remove(int productId)
+        public IActionResult Remove(Guid productId)
         {
             productsStorage.Remove(productId);
             return RedirectToAction("Index");
@@ -31,27 +32,27 @@ namespace WomanShop.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(Product product)
+        public IActionResult Add(ProductViewModel product)
         {
             if (ModelState.IsValid)
             {
-                productsStorage.Add(product);
+                productsStorage.Add(Mapping.ToProductModel(product));
                 return RedirectToAction("Index");
             }
             return View();
         }
-        public IActionResult Update(int productId)
+        public IActionResult Update(Guid productId)
         {
             var product = productsStorage.TryGetById(productId);
-            return View(product);
+            return View(Mapping.ToProductViewModel(product));
         }
 
         [HttpPost]
-        public IActionResult Update(Product product)
+        public IActionResult Update(ProductViewModel product)
         {
             if (ModelState.IsValid)
             {
-                productsStorage.Update(product);
+                productsStorage.Update(Mapping.ToProductModel(product));
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Update");

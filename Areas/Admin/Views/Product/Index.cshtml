@@ -1,5 +1,5 @@
 ﻿
-@model List<Product>
+@model List<ProductViewModel>
 <div class="row">
         @await Html.PartialAsync("LeftAdminMenu")
 
@@ -20,7 +20,7 @@
 
                 <tbody>
                     <tr>
-                        <td>@(product.Id+1)</td>
+                        @*<td>@(product.Id+1)</td>*@
                         <td>@product.Name</td>
                         <td class="w-25">@product.Cost</td>
                         <td><a class="btn btn-primary" asp-area="admin" asp-controller="product" asp-action="update" asp-route-productId=@product.Id>Редактировать</a></td>

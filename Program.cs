@@ -1,27 +1,35 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Protocols;
+using OnlineShop.DB;
 using Serilog;
 using System.Globalization;
 using WomanShop.Interfaces;
 using WomanShop.Models;
 using WomanShop.Storages;
+using System.Configuration;
+using OnlineShop.DB.Storages;
+using OnlineShop.DB.Interfaces;
 
 namespace WomanShop
 {
     public class Program
     {
+      
         public static void Main(string[] args)
         {
 
             var builder = WebApplication.CreateBuilder(args);
             builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
-
+            
             builder.Services.AddControllersWithViews();
-
+            string connection = builder.Configuration.GetConnectionString("online_shop");
+            builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
             builder.Services.AddSingleton<IRolesStorage, InMemoryRolesStorage>();
-            builder.Services.AddSingleton<IProductsStorage, InMemoryProductsStorage>();
+            builder.Services.AddTransient<IProductsStorage, DbProductsStorage>();
             builder.Services.AddSingleton<IFavoritesStorage, InMemoryFavoritesStorage>();
             builder.Services.AddSingleton<IUsersStorage, InMemoryUsersStorage>();
-            builder.Services.AddSingleton<ICartsStorage,InMemoryCartsStorage>();
+            builder.Services.AddTransient<ICartsStorage,DbCartsStorage>();
             builder.Services.AddSingleton<IOrdersStorage, InMemoryOrdersStorage>();
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -32,7 +40,6 @@ namespace WomanShop
             }
             );
             var app = builder.Build();
-
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");

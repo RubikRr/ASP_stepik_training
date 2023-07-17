@@ -5,13 +5,13 @@
         public Guid Id { get; }
         public int UserId { get; }
 
-        public List<Product>  Products{ get; set; }
+        public List<ProductViewModel>  Products{ get; set; }
 
         public Favorite( int userId)
         {
             Id = Guid.NewGuid();
             UserId = userId;
-            Products = new List<Product>();
+            Products = new List<ProductViewModel>();
         }
     }
 }

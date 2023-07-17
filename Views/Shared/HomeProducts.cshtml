@@ -11,7 +11,11 @@
                 </div>
                 <img src="@product.ImagePath" class="card-img-top img-thumbnail" alt="Упс... Картинка убежала">
                 <div class="card-body">
-                    <a class="card-title fs-5" href="/product/index/@product.Id"> @product.Name </a>
+                    <a class="card-title fs-5"
+                    asp-area=""
+                    asp-controller="product" 
+                    asp-action="index"
+                    asp-route-productId=@product.Id> @product.Name </a>
 
                     <h5>Цена:@product.Cost р.</h5>
                     <p>Описание:@product.Description</p>

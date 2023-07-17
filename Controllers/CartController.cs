@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WomanShop.Interfaces;
+using OnlineShop.DB.Interfaces;
+using WomanShop.Helpers;
 using WomanShop.Models;
 using WomanShop.Storages;
 
@@ -15,9 +16,9 @@ namespace WomanShop.Controllers
         public CartController(IProductsStorage _productsStorage,ICartsStorage _cartStorage)
         {
            productsStorage = _productsStorage ;
-           cartsStorage = _cartStorage ;
+           cartsStorage = _cartStorage;
         }
-        public IActionResult Add(int productId)
+        public IActionResult Add(Guid productId)
         {
             var product = productsStorage.TryGetById(productId);
             cartsStorage.Add(Constants.UserId, product);
@@ -30,7 +31,7 @@ namespace WomanShop.Controllers
         {
             var userCart = cartsStorage.TryGetByUserId(Constants.UserId);
            
-            return View(userCart);
+            return View( Mapping.ToCartViewModel(userCart));
         }
 
         public IActionResult Clear()
@@ -39,7 +40,7 @@ namespace WomanShop.Controllers
             cartsStorage.Clear(Constants.UserId);
             return RedirectToAction("Index");
         }
-        public IActionResult ChangeCount(Guid cartId,int productId, string act)
+        public IActionResult ChangeCount(Guid cartId,Guid productId, string act)
         {
             cartsStorage.Change(cartId, productId, act);
             return RedirectToAction("Index");
