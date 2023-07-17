@@ -1,4 +1,4 @@
-﻿@model Favorite
+﻿@model FavoriteViewModel
 @if (Model == null)
 {
     <h1>Ваш спиок избранных товаров пуст</h1>
@@ -12,7 +12,10 @@ else
             <div class="card h-100"> 
                 <img src="@product.ImagePath" class="card-img-top img-thumbnail" alt="...">
                 <div class="card-body">
-                    <a class="card-title" href="/product/index/@product.Id"> @product.Name </a>
+                    <a class="card-title" asp-area=""
+                    asp-controller="product"
+                    asp-action="index"
+                    asp-route-productId=@product.Id> @product.Name </a>
                     <h5>Цена:@product.Cost р.</h5>
                     <p>Описание:@product.Description</p>
                     <a class="btn btn-dark" asp-area=""

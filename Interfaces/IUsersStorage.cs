@@ -1,4 +1,6 @@
-﻿namespace WomanShop.Models
+﻿using WomanShop.Models;
+
+namespace WomanShop.Interfaces
 {
     public interface IUsersStorage
     {

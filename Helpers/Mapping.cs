@@ -54,5 +54,15 @@ namespace WomanShop.Helpers
                 UserId=cartModel.UserId
             };
         }
+
+        public static FavoriteViewModel ToFavoriteViewModel(Favorite favoriteModel)
+        {
+            return new FavoriteViewModel
+            {
+                Id=favoriteModel.Id,
+                UserId=favoriteModel.UserId,
+                Products=ToProductsViewModel(favoriteModel.Products)
+            };
+        }
     }
 }

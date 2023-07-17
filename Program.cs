@@ -5,7 +5,6 @@ using OnlineShop.DB;
 using Serilog;
 using System.Globalization;
 using WomanShop.Interfaces;
-using WomanShop.Models;
 using WomanShop.Storages;
 using System.Configuration;
 using OnlineShop.DB.Storages;
@@ -27,7 +26,7 @@ namespace WomanShop
             builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
             builder.Services.AddSingleton<IRolesStorage, InMemoryRolesStorage>();
             builder.Services.AddTransient<IProductsStorage, DbProductsStorage>();
-            builder.Services.AddSingleton<IFavoritesStorage, InMemoryFavoritesStorage>();
+            builder.Services.AddTransient<IFavoritesStorage, DbFavoritesStorage>();
             builder.Services.AddSingleton<IUsersStorage, InMemoryUsersStorage>();
             builder.Services.AddTransient<ICartsStorage,DbCartsStorage>();
             builder.Services.AddSingleton<IOrdersStorage, InMemoryOrdersStorage>();
