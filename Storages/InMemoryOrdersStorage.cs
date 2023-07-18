@@ -6,15 +6,15 @@ namespace WomanShop.Storages
 {
     public class InMemoryOrdersStorage:IOrdersStorage
     {
-        private List<Order> orders=new List<Order>();
+        private List<OrderViewModel> orders=new List<OrderViewModel>();
 
-        public void Add(Order order)
+        public void Add(OrderViewModel order)
         {
             orders.Add(order);
         }
-        public List<Order> GetAll() { return orders; }
+        public List<OrderViewModel> GetAll() { return orders; }
 
-        public Order TryGetById(Guid id)
+        public OrderViewModel TryGetById(Guid id)
         {
             return orders.FirstOrDefault(order => order.Id == id);
         }

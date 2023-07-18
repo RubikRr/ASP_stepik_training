@@ -7,24 +7,33 @@ namespace WomanShop.Helpers
     {
         public static ProductViewModel ToProductViewModel(Product productModel)
         {
-            return new ProductViewModel{
-                Id = productModel.Id,
-                Name = productModel.Name,
-                Cost = productModel.Cost,
-                Description = productModel.Description,
-                ImagePath = productModel.ImagePath
-            };
+            if (productModel != null)
+            {  
+                return new ProductViewModel{
+                    Id = productModel.Id,
+                    Name = productModel.Name,
+                    Cost = productModel.Cost,
+                    Description = productModel.Description,
+                    ImagePath = productModel.ImagePath
+                };
+            }
+            return null;
+
         }
         public static Product ToProductModel(ProductViewModel productViewModel)
         {
-            return new Product
-            {
-                Id = productViewModel.Id,
-                Name = productViewModel.Name,
-                Cost = productViewModel.Cost,
-                Description = productViewModel.Description,
-                ImagePath = productViewModel.ImagePath
-            };
+            if (productViewModel != null)
+            {   
+                return new Product
+                {
+                    Id = productViewModel.Id,
+                    Name = productViewModel.Name,
+                    Cost = productViewModel.Cost,
+                    Description = productViewModel.Description,
+                    ImagePath = productViewModel.ImagePath
+                };
+            }
+            return null;
         }
         public static List<ProductViewModel> ToProductsViewModel(List<Product> productsModel)
         {
@@ -34,10 +43,15 @@ namespace WomanShop.Helpers
 
         public static CartItemViewModel ToCartItemViewModel(CartItem cartItemModel) 
         {
-            return new CartItemViewModel {
-                Product=ToProductViewModel(cartItemModel.Product),
-                Quantity=cartItemModel.Quantity
-            };
+            if (cartItemModel != null)
+            {  
+                return new CartItemViewModel {
+                    Product=ToProductViewModel(cartItemModel.Product),
+                    Quantity=cartItemModel.Quantity
+                };
+            }
+            return null;
+
         }
         public static List<CartItemViewModel> ToCartItemsViewModel(List<CartItem> cartItemsModel)
         {
@@ -47,22 +61,17 @@ namespace WomanShop.Helpers
 
         public static CartViewModel ToCartViewModel(Cart cartModel)
         {
-            return new CartViewModel
+            if (cartModel != null)
             {
-                Id = cartModel.Id,
-                Items= ToCartItemsViewModel(cartModel.Items),
-                UserId=cartModel.UserId
-            };
-        }
-
-        public static FavoriteViewModel ToFavoriteViewModel(Favorite favoriteModel)
-        {
-            return new FavoriteViewModel
-            {
-                Id=favoriteModel.Id,
-                UserId=favoriteModel.UserId,
-                Products=ToProductsViewModel(favoriteModel.Products)
-            };
+                return new CartViewModel
+                {
+                    Id = cartModel.Id,
+                    Items = ToCartItemsViewModel(cartModel.Items),
+                    UserId = cartModel.UserId
+                };
+            }
+            return null;
+            
         }
     }
 }

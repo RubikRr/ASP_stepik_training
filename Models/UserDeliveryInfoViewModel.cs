@@ -2,7 +2,7 @@
 
 namespace WomanShop.Models
 {
-    public class UserDeliveryInfo
+    public class UserDeliveryInfoViewModel
     {
         [Required(ErrorMessage ="Впишите имя")]
         [StringLength(100,MinimumLength =1,ErrorMessage ="ФИО содержит минимум 1 букву")]

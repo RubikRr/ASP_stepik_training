@@ -23,12 +23,12 @@ namespace WomanShop.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Confirm(UserDeliveryInfo user)
+        public IActionResult Confirm(UserDeliveryInfoViewModel user)
         {
             if (ModelState.IsValid)
             {
                 var cart = cartsStorage.TryGetByUserId(Constants.UserId);
-                var order = new Order(user,Mapping.ToCartItemsViewModel(cart.Items));
+                var order = new OrderViewModel(user,Mapping.ToCartItemsViewModel(cart.Items));
                 ordersStorage.Add(order);
                 //cartsStorage.Destroy(Constants.UserId);
                 //cartsStorage.Clear(Constants.UserId);

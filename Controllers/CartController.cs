@@ -31,7 +31,7 @@ namespace WomanShop.Controllers
         {
             var userCart = cartsStorage.TryGetByUserId(Constants.UserId);
            
-            return View( Mapping.ToCartViewModel(userCart));
+            return View(Mapping.ToCartViewModel(userCart));
         }
 
         public IActionResult Clear()

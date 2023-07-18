@@ -16,8 +16,8 @@ namespace WomanShop.Controllers
         }
         public IActionResult Index()
         {
-            var favorite = favoritesStorage.TryGetByUserId(Constants.UserId);
-            return View(Mapping.ToFavoriteViewModel(favorite));
+            var favoriteProducts = favoritesStorage.GetAllProducts(Constants.UserId);
+            return View(Mapping.ToProductsViewModel(favoriteProducts));
         }
 
         public IActionResult Add(Guid productId)
@@ -25,6 +25,12 @@ namespace WomanShop.Controllers
             var product = productsStorage.TryGetById(productId);
             if (product == null) { return RedirectToAction("Index"); } 
             favoritesStorage.Add(Constants.UserId, product);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Remove(Guid productId)
+        {
+            favoritesStorage.Remove(Constants.UserId, productId);
             return RedirectToAction("Index");
         }
     }

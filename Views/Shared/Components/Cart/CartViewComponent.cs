@@ -15,15 +15,13 @@ namespace WomanShop.Views.Shared.Components.Cart
 
         public IViewComponentResult Invoke()
         {
-            var cartModel = cartsStorage.TryGetByUserId(Constants.UserId);
-            if (cartModel == null) { return View("Cart", "0"); }
-            var cart=Mapping.ToCartViewModel(cartModel);
-            
-            var ans= "";
-            var productQuantity = (cart?.Quantity??0).ToString();
-            if(productQuantity!="0")
-                ans = productQuantity;
-            return View("Cart",ans);
+            var cart = Mapping.ToCartViewModel(cartsStorage.TryGetByUserId(Constants.UserId));
+           
+
+            if (cart != null && cart.Quantity!=0) { return View("Cart", cart.Quantity.ToString());  }
+
+            return View("Cart", "");
+            ;
         }
     }
 }
