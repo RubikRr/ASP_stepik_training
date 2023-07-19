@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShop.DB.Interfaces;
+using OnlineShop.DB.Models;
 using WomanShop.Helpers;
 using WomanShop.Interfaces;
 using WomanShop.Models;
@@ -23,18 +24,24 @@ namespace WomanShop.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Confirm(UserDeliveryInfoViewModel user)
+        public IActionResult Confirm(UserDeliveryInfoViewModel userDeliveryInfo)
         {
             if (ModelState.IsValid)
             {
                 var cart = cartsStorage.TryGetByUserId(Constants.UserId);
-                var order = new OrderViewModel(user,Mapping.ToCartItemsViewModel(cart.Items));
+                var orderItems = new List<CartItem>();
+                orderItems.AddRange(cart.Items);
+                var order = new Order
+                {
+                    DeliveryInfo = Mapping.ToUserDeliveryInfoModel(userDeliveryInfo),
+                    Items = orderItems
+                };
                 ordersStorage.Add(order);
                 //cartsStorage.Destroy(Constants.UserId);
-                //cartsStorage.Clear(Constants.UserId);
+                cartsStorage.Clear(Constants.UserId);
                 return View();
             }
-            return RedirectToAction("Checkout", user);
+            return RedirectToAction("Checkout", userDeliveryInfo);
         }
 
         public IActionResult Checkout()

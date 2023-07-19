@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShop.DB.Interfaces;
+using OnlineShop.DB.Models;
+using WomanShop.Helpers;
 using WomanShop.Interfaces;
 using WomanShop.Models;
 
@@ -15,17 +18,18 @@ namespace WomanShop.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var orders = ordersStorage.GetAll();
-            return View(orders);
+            return View(Mapping.ToOrdersViewModel(orders));
         }
         public IActionResult Details(Guid orderId)
         {
             var order = ordersStorage.TryGetById(orderId);
-            return View(order);
+            return View(Mapping.ToOrderViewModel(order));
         }
         [HttpPost]
-        public IActionResult UpdateStatus(Guid orderId, OrderdStatus status)
+        public IActionResult UpdateStatus(Guid orderId, OrderStatusViewModel status)
         {
-            ordersStorage.UpdateStatus(orderId, status);
+            var newStatus = (OrderStatus)(status);
+            ordersStorage.UpdateStatus(orderId, newStatus);
             return RedirectToAction("Index");
         }
     }

@@ -1,31 +1,17 @@
-﻿using System.ComponentModel;
+﻿using OnlineShop.DB.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace WomanShop.Models
 {
-    //public enum OrderdStatus 
-    //{
-    //    [Display(Name = "Новый")]
-    //    New = 0,
-    //    [Display(Name = "Подтвержденный")]
-    //    Confirmed = 1,
-    //    [Display(Name = "Оплаченный")]
-    //    Paid = 2,
-    //    [Display(Name = "Доставленный")]
-    //    Delivered = 3,
-    //    [Display(Name = "Завершенный")]
-    //    Complited = 4
 
-    //}
     public class OrderViewModel
     {
-        private static int orderNumber= 1;
 
-        public Guid Id { get; }
-        public int Number { get; set; }
+        public Guid Id { get; set; }
         public UserDeliveryInfoViewModel DeliveryInfo { get; set; }
         public List<CartItemViewModel> Items { get; set; }
-        public OrderdStatus Status { get; set; }
+        public OrderStatusViewModel Status { get; set; }
         public decimal Total 
         { 
             get 
@@ -40,13 +26,10 @@ namespace WomanShop.Models
         public OrderViewModel(UserDeliveryInfoViewModel deliveryInfo,List<CartItemViewModel> items)
         {
             Id = Guid.NewGuid();
-            Status = OrderdStatus.New;
+            Status = OrderStatusViewModel.New;
             DeliveryInfo= deliveryInfo;
             Items = items;
             Date = DateTime.Now;
-
-            Number = orderNumber;
-            orderNumber++;
         }
 
     }

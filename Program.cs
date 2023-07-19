@@ -29,7 +29,7 @@ namespace WomanShop
             builder.Services.AddTransient<IFavoritesStorage, DbFavoritesStorage>();
             builder.Services.AddSingleton<IUsersStorage, InMemoryUsersStorage>();
             builder.Services.AddTransient<ICartsStorage,DbCartsStorage>();
-            builder.Services.AddSingleton<IOrdersStorage, InMemoryOrdersStorage>();
+            builder.Services.AddTransient<IOrdersStorage,DbOrdersStorage>();
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {
                 var supportedCultures = new[] { new CultureInfo("en-US") };

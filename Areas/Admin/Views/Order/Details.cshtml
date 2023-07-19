@@ -1,4 +1,5 @@
-﻿@model OrderViewModel
+﻿@using OnlineShop.DB.Models;
+@model OrderViewModel
 @if (Model == null)
 {
     <h4>С заказом чето не так</h4>
@@ -10,7 +11,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="w-75">Заказ №@Model.Number</th>
+                    <th class="w-75">Заказ №</th>
                     <th></th>
                 </tr>
             </thead>
@@ -45,7 +46,7 @@
                 </tr>
                 <tr>
                     <td>Статус заказа:</td>
-                    <td><select asp-for="@Model.Status"asp-items="@Html.GetEnumSelectList<OrderdStatus>()"
+                    <td><select asp-for="@Model.Status"asp-items="@Html.GetEnumSelectList<OrderStatusViewModel>()"
                         class=" form-control"></select>
                     </td>
                 </tr>
