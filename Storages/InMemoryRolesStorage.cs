@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Data;
-using WomanShop.Areas.Admin.Models;
+﻿using WomanShop.Areas.Admin.Models;
 using WomanShop.Interfaces;
 
 namespace WomanShop.Storages
@@ -29,13 +27,13 @@ namespace WomanShop.Storages
         { 
             roles.RemoveAll(role=>role.Id==roleId);
         }
-
+        
         public Role TryGetById(Guid id)
         {
             return roles.FirstOrDefault(role => role.Id == id);
         }
 
-        public Role TryGetById(string Name)
+        public Role TryGetByName(string Name)
         {
             return roles.FirstOrDefault(role => role.Name == Name);
         }

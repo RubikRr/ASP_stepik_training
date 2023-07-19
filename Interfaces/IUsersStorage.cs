@@ -1,4 +1,5 @@
-﻿using WomanShop.Models;
+﻿using WomanShop.Areas.Admin.Models;
+using WomanShop.Models;
 
 namespace WomanShop.Interfaces
 {
@@ -12,7 +13,8 @@ namespace WomanShop.Interfaces
         public bool IsCorrectPassword(Login login);
         public void Remove(Guid userId);
         public void Update(User userId);
-        public void UpdatePassword(User userId, string password, string confirmPassword);
+        public void UpdatePassword(User user, string password, string confirmPassword);
+        public void UpdateRole(User user, Role role);
 
         public List<User> GetAll();
     }

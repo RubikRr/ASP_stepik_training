@@ -58,7 +58,11 @@
                                         asp-controller="user"
                                         asp-action="update"
                                         asp-route-userId=@Model.Id>Редактирование данных</a></li>
-                                    <li><a class="dropdown-item" href="#">Права доступа</a></li>
+                                    <li><a class="dropdown-item"
+                                         asp-area="admin"
+                                        asp-controller="user"
+                                        asp-action="updateRole"
+                                        asp-route-userId=@Model.Id>Права доступа</a></li>
                                     <li>
                                         <a class="dropdown-item"
                                         asp-area="admin"

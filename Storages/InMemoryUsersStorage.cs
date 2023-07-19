@@ -1,4 +1,5 @@
-﻿using WomanShop.Interfaces;
+﻿using WomanShop.Areas.Admin.Models;
+using WomanShop.Interfaces;
 using WomanShop.Models;
 
 namespace WomanShop.Storages
@@ -34,7 +35,10 @@ namespace WomanShop.Storages
             return user != null && user.Password == login.Password;
         }
 
-        
+        public void UpdateRole(User user, Role newrole)
+        {
+            user.RoleName= newrole.Name;
+        }
         public void Update(User user)
         {
             var existingUser=TryGetUserById(user.Id);

@@ -13,7 +13,7 @@ namespace WomanShop.Interfaces
         public Role TryGetById(Guid id);
 
 
-        public Role TryGetById(string Name);
+        public Role TryGetByName(string Name);
       
     }
 }

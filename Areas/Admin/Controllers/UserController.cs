@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
+using OnlineShop.DB.Models;
+using WomanShop.Areas.Admin.Models;
 using WomanShop.Interfaces;
 using WomanShop.Models;
 
@@ -92,6 +94,29 @@ namespace WomanShop.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 usersStorage.UpdatePassword(user,password,confirmPassword);
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+
+        public IActionResult UpdateRole(Guid userId)
+        {
+            ViewBag.Roles = new SelectList(rolesStorage.GetAll(), nameof(Models.Role.Name), nameof(Models.Role.Name));
+            var user = usersStorage.TryGetUserById(userId);
+            return View(user);
+        }
+        [HttpPost]
+        public IActionResult UpdateRole(Guid userId,string roleName)
+        {
+            var user = usersStorage.TryGetUserById(userId);
+            var role = rolesStorage.TryGetByName(roleName);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Пользователь не наеден");
+            }
+            if (ModelState.IsValid)
+            {
+                usersStorage.UpdateRole(user, role);
                 return RedirectToAction("Index");
             }
             return View(user);
