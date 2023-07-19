@@ -49,9 +49,9 @@ namespace WomanShop.Storages
             existingUser.Phone= user.Phone;
             existingUser.RoleName= user.RoleName;
         }
-        public void UpdatePassword(User user, string password, string confirmPassword)
+        public void UpdatePassword(User user, string password)
         {
-
+            user.Password = password;
         }
         public void Remove(Guid id) 
         {

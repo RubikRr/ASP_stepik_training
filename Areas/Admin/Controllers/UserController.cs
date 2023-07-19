@@ -93,7 +93,7 @@ namespace WomanShop.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                usersStorage.UpdatePassword(user,password,confirmPassword);
+                usersStorage.UpdatePassword(user,password);
                 return RedirectToAction("Index");
             }
             return View(user);
